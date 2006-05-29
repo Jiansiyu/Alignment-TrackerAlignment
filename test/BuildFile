@@ -3,7 +3,6 @@
 <use name=FWCore/Framework> 
 <use name=FWCore/MessageLogger> 
 
-<flags CXXFLAGS=-g>
 <flags SEAL_PLUGIN_NAME="testTrackerAlignment">
-<library file=TestAnalyzer.cc name=testTrackerAlignment>
+<library file=TestAnalyzer.cpp name=testTrackerAlignment>
 </library>
