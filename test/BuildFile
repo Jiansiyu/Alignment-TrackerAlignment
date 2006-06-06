@@ -1,3 +1,4 @@
+<use name=root>
 <use name=Geometry/TrackerNumberingBuilder>
 <use name=Alignment/TrackerAlignment>
 <use name=FWCore/Framework> 
