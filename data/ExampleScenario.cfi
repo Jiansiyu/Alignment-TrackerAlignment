@@ -10,8 +10,9 @@ es_module MisalignedTracker = MisalignedTrackerESProducer
  {
 
        // -- General settings -- //
-       untracked bool dumpBefore = false   // This is actually the default
-       untracked bool dumpAfter = false    // This is actually the default
+       untracked bool dumpBefore  = false  // This is actually the default
+       untracked bool dumpAfter   = false  // This is actually the default
+	   untracked bool saveToDbase = false  // This is actually the default
 
        // -- Top-level --//
        string distribution = 'gaussian'
@@ -19,8 +20,8 @@ es_module MisalignedTracker = MisalignedTrackerESProducer
 
        // -- Barrel -- //
        PSet TOBs = {
-         double phiX = 0.2
-         PSet BarrelLayer1 = { double phiX = 0.3 }
+         double dX = 0.2
+         PSet BarrelLayer1 = { double phiX = 0.03 }
        }
 
        PSet TOB1 = {
