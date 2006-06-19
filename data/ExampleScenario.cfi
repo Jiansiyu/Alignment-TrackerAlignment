@@ -1,24 +1,24 @@
-#
-# Example misalignment scenario
-# 
-# Include this file to produce a misaligned tracker geometry
-#
-# This replaces Geometry/TrackerGeometryBuilder/data/trackerGeometry.cfi
-#
+//
+// Example misalignment scenario
+// 
+// Include this file to produce a misaligned tracker geometry
+//
+// This replaces Geometry/TrackerGeometryBuilder/data/trackerGeometry.cfi
+//
 
 es_module MisalignedTracker = MisalignedTrackerESProducer
   {
-
+	
 	// -- General settings -- //
 	untracked bool dumpBefore  = false  // This is actually the default
 	untracked bool dumpAfter   = false  // This is actually the default
 	untracked bool saveToDbase = false  // This is actually the default
-
+	
 	// -- Top-level --//
 	string distribution = 'gaussian'
 	int32 seed = 1234567
 	bool  setError = true
-
+	
 	// -- Barrel -- //
 	PSet TOBs = {
 	  double dX = 0.2
@@ -29,7 +29,6 @@ es_module MisalignedTracker = MisalignedTrackerESProducer
 	  PSet BarrelLayers = { double dX = 0.1 }
 	  PSet BarrelLayer1 = { double dX = 0.2 }
 	}
-
 
   }
 
