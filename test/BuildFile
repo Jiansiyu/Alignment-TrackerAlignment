@@ -10,7 +10,3 @@
 <library file=TestAnalyzer.cpp name=testTrackerAlignment>
   <flags SEAL_PLUGIN_NAME="testTrackerAlignment">
 </library>
-
-<library file=TestReader.cpp name=testReadAlignment>
-  <flags SEAL_PLUGIN_NAME="testReadAlignment">
-</library>
