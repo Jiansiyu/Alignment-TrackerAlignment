@@ -15,3 +15,7 @@
   <flags SEAL_PLUGIN_NAME="testReadAlignment">
 </library>
 
+<library file=TestTrackerHierarchy.cpp name=testTrackerHierarchy>
+  <flags SEAL_PLUGIN_NAME="testTrackerHierarchy">
+</library>
+
