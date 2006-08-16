@@ -1,0 +1,14 @@
+//
+// Short term misalignment scenario as it is (wrongly) implemented in ORCA
+// 
+// Include this file to produce a misaligned tracker geometry
+//
+
+
+include "Alignment/TrackerAlignment/data/Scenarios.cff"
+
+es_module MisalignedTracker = MisalignedTrackerESProducer
+  {
+	using TrackerORCAShortTermScenario
+  }
+

@@ -1,0 +1,13 @@
+//
+// "Misalignment" scenario without misalignment...
+// 
+// Include this file to produce an aligned tracker geometry with the misalignment tools
+//
+
+include "Alignment/TrackerAlignment/data/Scenarios.cff"
+
+es_module MisalignedTracker = MisalignedTrackerESProducer
+  {
+	using NoMovementsScenario
+  }
+
