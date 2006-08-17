@@ -3,6 +3,8 @@
 // 
 // Include this file to produce an aligned tracker geometry with the misalignment tools
 //
+// This replaces Geometry/TrackerGeometryBuilder/data/trackerGeometry.cfi
+
 
 include "Alignment/TrackerAlignment/data/Scenarios.cff"
 
