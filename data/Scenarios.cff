@@ -10,245 +10,321 @@
 // -----------------------------------------------------------------------
 // General settings common to all scenarios
 block MisalignmentScenarioSettings = 
-  {
+{
 	untracked bool dumpBefore  = false  // This is actually the default
 	untracked bool dumpAfter   = false  // This is actually the default
 	untracked bool saveToDbase = false  // This is actually the default
-
+	
 	string distribution = 'gaussian'
 	int32 seed = 1234567
 	bool  setError = true
-  }
+}
 
 
 // -----------------------------------------------------------------------
 // Example scenario (dummy movements)
 block TrackerExampleScenario =
-  {
+{
 	using MisalignmentScenarioSettings	
 	
-	// -- Barrel -- //
 	PSet TOBs = {
-	  double dX = 0.2
-	  PSet BarrelLayer1 = { double phiX = 0.03 }
+		double dX = 0.2
+		PSet BarrelLayer1 = { double phiX = 0.03 }
 	}
 	
 	PSet TOB1 = {
-	  PSet BarrelLayers = { double dX = 0.1 }
-	  PSet BarrelLayer1 = { double dX = 0.2 }
+		PSet BarrelLayers = { double dX = 0.1 }
+		PSet BarrelLayer1 = { double dX = 0.2 }
 	}
-	
-  }
+
+}
 
 
 // -----------------------------------------------------------------------
 //  "Misalignment" scenario without misalignment...
 block NoMovementsScenario =
 {
-  using MisalignmentScenarioSettings 
+	using MisalignmentScenarioSettings 
 }
 
 
 // -----------------------------------------------------------------------
 // Short term misalignment scenario as it is (wrongly) implemented in ORCA
+// Layer movements applied at structure level instead of layer level
 block TrackerORCAShortTermScenario =
-  {
+{
 	
 	using MisalignmentScenarioSettings
 	
 	// TPB
 	PSet TPBs = {
-	  double scale = 1.0
-	  string distribution = 'gaussian'
-	  double dX = 0.0010 double dY = 0.0010 double dZ = 0.0010
-	  double phiZ = 0.000010
-
-	  PSet Dets = { double dX = 0.0013 double dY = 0.0013 double dZ = 0.0013 }
-	  PSet Rods = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
-	}
-   
-
-	// TPE
-	PSet TPEs = {
-	  double scale = 1.0
-	  string distribution = 'gaussian'
-	  double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005
-	  double phiZ = 0.000005
-     
-	  PSet Dets = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
-	  PSet Petals = { double dX = 0.00025 double dY = 0.00025 double dZ = 0.00025 }
-	}
-
-	// TIB
-	PSet TIBs = {
-	  double scale = 1.0
-	  string distribution = 'gaussian'
-	  double dX = 0.0105 double dY = 0.0105 double dZ = 0.0500
-	  double phiZ = 0.000090
-     
-	  PSet Dets = {
-		string distribution = 'flat'
-		double dX = 0.02 double dY = 0.02 double dZ = 0.02
-	  }
-	  PSet Rods = {
-		string distribution = 'flat'
-		double dX = 0.02 double dY = 0.02 double dZ = 0.02
-	  }
-	}
-   
-	// TID
-	PSet TIDs = {
-	  double scale = 1.0
-	  string distribution = 'flat'
-	  double dX = 0.04 double dY = 0.04 double dZ = 0.04
-	  double phiZ = 0.000100
-     
-	  PSet Dets = { double dX = 0.0105 double dY = 0.0105 double dZ = 0.0105 }
-	  PSet TIDRings = { double dX = 0.03 double dY = 0.03 double dZ = 0.03 }
-	}
-
-	// TOB
-	PSet TOBs = {
-	  double scale = 1.0
-	  string distribution = 'gaussian'
-	  double dX = 0.0067 double dY = 0.0067 double dZ = 0.0500
-	  double phiZ = 0.000059
-     
-	  PSet Dets = {
-		string distribution = 'flat'
-		double dX = 0.01 double dY = 0.01 double dZ = 0.01
-	  }
-	  PSet Rods = { 
-		string distribution = 'flat'
-		double dX = 0.01 double dY = 0.01 double dZ = 0.01
-	  }
-	}
-   
-	// TEC
-	PSet TECs = {
-	  double scale = 1.0
-	  string distribution = 'gaussian'
-	  double dX = 0.0057 double dY = 0.0057 double dZ = 0.0500
-	  double phiZ = 0.000046
-     
-	  PSet Dets = {
-		string distribution = 'flat'
-		double dX = 0.005 double dY = 0.005 double dZ = 0.005
-	  }
-	  PSet Petals = {
-		string distribution = 'flat'
-		double dX = 0.01 double dY = 0.01 double dZ = 0.01
-	  }
-	}
-   
-
-  }
-
-
-  
-// -----------------------------------------------------------------------
-// Short term misalignment scenario (as interpreted from AN-2005-036)
-block TrackerShortTermScenario =
-  {
-
-	using MisalignmentScenarioSettings
-
-	// -- Barrel -- //
-	
-	// TPB
-	PSet TPBs = {
-	  string distribution = 'gaussian'
-	  double scale = 1.0
-	  PSet Dets = { double dX = 0.0013 double dY = 0.0013 double dZ = 0.0013 }
-	  PSet Rods = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
-	  PSet PixelHalfBarrelLayers = {
+		double scale = 1.0
+		string distribution = 'gaussian'
 		double dX = 0.0010 double dY = 0.0010 double dZ = 0.0010
 		double phiZ = 0.000010
-	  }
+		
+		PSet Dets = { double dX = 0.0013 double dY = 0.0013 double dZ = 0.0013 }
+		PSet Rods = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
 	}
 	
 	
 	// TPE
 	PSet TPEs = {
-	  double scale = 1.0
-	  string distribution = 'gaussian'
-	  PSet Dets = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
-	  PSet Petals = { double dX = 0.00025 double dY = 0.00025 double dZ = 0.00025 }
-	  PSet EndcapLayers = {
+		double scale = 1.0
+		string distribution = 'gaussian'
 		double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005
 		double phiZ = 0.000005
-	  }
+		
+		PSet Dets = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
+		PSet Petals = { double dX = 0.00025 double dY = 0.00025 double dZ = 0.00025 }
 	}
-
+	
 	// TIB
 	PSet TIBs = {
-	  double scale = 1.0
-	  PSet Dets = {
-		string distribution = 'flat'
-		double dX = 0.02 double dY = 0.02 double dZ = 0.02
-	  }
-	  PSet Rods = {
-		string distribution = 'flat'
-		double dX = 0.02 double dY = 0.02 double dZ = 0.02
-	  }
-	  PSet BarrelLayers = {
+		double scale = 1.0
 		string distribution = 'gaussian'
 		double dX = 0.0105 double dY = 0.0105 double dZ = 0.0500
 		double phiZ = 0.000090
-	  }
+		
+		PSet Dets = {
+			string distribution = 'flat'
+			double dX = 0.02 double dY = 0.02 double dZ = 0.02
+		}
+		PSet Rods = {
+			string distribution = 'flat'
+			double dX = 0.02 double dY = 0.02 double dZ = 0.02
+		}
 	}
-   
+	
 	// TID
 	PSet TIDs = {
-	  double scale = 1.0
-	  string distribution = 'flat'
-	  PSet Dets = { double dX = 0.0105 double dY = 0.0105 double dZ = 0.0105 }
-	  PSet TIDRings = { double dX = 0.03 double dY = 0.03 double dZ = 0.03 }
-	  PSet TIDLayers = {
+		double scale = 1.0
+		string distribution = 'flat'
 		double dX = 0.04 double dY = 0.04 double dZ = 0.04
 		double phiZ = 0.000100
-	  }
+		
+		PSet Dets = { double dX = 0.0105 double dY = 0.0105 double dZ = 0.0105 }
+		PSet TIDRings = { double dX = 0.03 double dY = 0.03 double dZ = 0.03 }
 	}
-
+	
 	// TOB
 	PSet TOBs = {
-	  double scale = 1.0
-	  PSet Dets = {
-		string distribution = 'flat'
-		double dX = 0.01 double dY = 0.01 double dZ = 0.01
-	  }
-	  PSet Rods = { 
-		string distribution = 'flat'
-		double dX = 0.01 double dY = 0.01 double dZ = 0.01
-	  }
-	  PSet BarrelLayers = { //!\\ This should be improved: TOB layers do not make sense!
+		double scale = 1.0
 		string distribution = 'gaussian'
 		double dX = 0.0067 double dY = 0.0067 double dZ = 0.0500
 		double phiZ = 0.000059
-	  }
+		
+		PSet Dets = {
+			string distribution = 'flat'
+			double dX = 0.01 double dY = 0.01 double dZ = 0.01
+		}
+		PSet Rods = { 
+			string distribution = 'flat'
+			double dX = 0.01 double dY = 0.01 double dZ = 0.01
+		}
 	}
-   
-	// -- Endcap -- //
-   
+	
 	// TEC
 	PSet TECs = {
-	  double scale = 1.0
-	  PSet Dets = {
-		string distribution = 'flat'
-		double dX = 0.005 double dY = 0.005 double dZ = 0.005
-	  }
-	  PSet Petals = {
-		string distribution = 'flat'
-		double dX = 0.01 double dY = 0.01 double dZ = 0.01
-	  }
-	  PSet EndcapLayers = {
+		double scale = 1.0
 		string distribution = 'gaussian'
 		double dX = 0.0057 double dY = 0.0057 double dZ = 0.0500
 		double phiZ = 0.000046
-	  }
+		
+		PSet Dets = {
+			string distribution = 'flat'
+			double dX = 0.005 double dY = 0.005 double dZ = 0.005
+		}
+		PSet Petals = {
+			string distribution = 'flat'
+			double dX = 0.01 double dY = 0.01 double dZ = 0.01
+		}
 	}
-   
 
-  }
-  
-  
+
+}
+
+
+
+// -----------------------------------------------------------------------
+// Short term misalignment scenario (as interpreted from AN-2005-036)
+// Layer movements applied at layer level
+block TrackerShortTermScenario =
+{
+	
+	using MisalignmentScenarioSettings
+	
+	// TPB
+	PSet TPBs = {
+		string distribution = 'gaussian'
+		double scale = 1.0
+		PSet Dets = { double dX = 0.0013 double dY = 0.0013 double dZ = 0.0013 }
+		PSet Rods = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
+		PSet PixelHalfBarrelLayers = {
+			double dX = 0.0010 double dY = 0.0010 double dZ = 0.0010
+			double phiZ = 0.000010
+		}
+	}
+	
+	
+	// TPE
+	PSet TPEs = {
+		double scale = 1.0
+		string distribution = 'gaussian'
+		PSet Dets = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
+		PSet Petals = { double dX = 0.00025 double dY = 0.00025 double dZ = 0.00025 }
+		PSet EndcapLayers = {
+			double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005
+			double phiZ = 0.000005
+		}
+	}
+	
+	// TIB
+	PSet TIBs = {
+		double scale = 1.0
+		PSet Dets = {
+			string distribution = 'flat'
+			double dX = 0.02 double dY = 0.02 double dZ = 0.02
+		}
+		PSet Rods = {
+			string distribution = 'flat'
+			double dX = 0.02 double dY = 0.02 double dZ = 0.02
+		}
+		PSet BarrelLayers = {
+			string distribution = 'gaussian'
+			double dX = 0.0105 double dY = 0.0105 double dZ = 0.0500
+			double phiZ = 0.000090
+		}
+	}
+	
+	// TID
+	PSet TIDs = {
+		double scale = 1.0
+		string distribution = 'flat'
+		PSet Dets = { double dX = 0.0105 double dY = 0.0105 double dZ = 0.0105 }
+		PSet TIDRings = { double dX = 0.03 double dY = 0.03 double dZ = 0.03 }
+		PSet TIDLayers = {
+			double dX = 0.04 double dY = 0.04 double dZ = 0.04
+			double phiZ = 0.000100
+		}
+	}
+	
+	// TOB
+	PSet TOBs = {
+		double scale = 1.0
+		PSet Dets = {
+			string distribution = 'flat'
+			double dX = 0.01 double dY = 0.01 double dZ = 0.01
+		}
+		PSet Rods = { 
+			string distribution = 'flat'
+			double dX = 0.01 double dY = 0.01 double dZ = 0.01
+		}
+		PSet BarrelLayers = { //!\\ This should be improved: TOB layers do not make sense!
+			string distribution = 'gaussian'
+			double dX = 0.0067 double dY = 0.0067 double dZ = 0.0500
+			double phiZ = 0.000059
+		}
+	}
+	
+	// TEC
+	PSet TECs = {
+		double scale = 1.0
+		PSet Dets = {
+			string distribution = 'flat'
+			double dX = 0.005 double dY = 0.005 double dZ = 0.005
+		}
+		PSet Petals = {
+			string distribution = 'flat'
+			double dX = 0.01 double dY = 0.01 double dZ = 0.01
+		}
+		PSet EndcapLayers = {
+			string distribution = 'gaussian'
+			double dX = 0.0057 double dY = 0.0057 double dZ = 0.0500
+			double phiZ = 0.000046
+		}
+	}
+
+
+}
+
+
+// -----------------------------------------------------------------------
+// Long term misalignment scenario (as interpreted from AN-2005-036)
+// Layer movements applied at layer level
+block TrackerLongTermScenario =
+{
+	
+	using MisalignmentScenarioSettings
+
+	string distribution = 'gaussian'
+	
+	// TPB
+	PSet TPBs = {
+		double scale = 1.0
+		PSet Dets = { double dX = 0.0013 double dY = 0.0013 double dZ = 0.0013 }
+		PSet Rods = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
+		PSet PixelHalfBarrelLayers = {
+			double dX = 0.0010 double dY = 0.0010 double dZ = 0.0010
+			double phiZ = 0.000010
+		}
+	}
+	
+	// TPE
+	PSet TPEs = {
+		double scale = 1.0
+		PSet Dets = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
+		PSet Petals = { double dX = 0.00025 double dY = 0.00025 double dZ = 0.00025 }
+		PSet EndcapLayers = {
+			double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005
+			double phiZ = 0.000005
+		}
+	}
+	
+	// TIB
+	PSet TIBs = {
+		double scale = 1.0
+		PSet Dets = { double dX = 0.002 double dY = 0.002 double dZ = 0.002 }
+		PSet Rods = { double dX = 0.002 double dY = 0.002 double dZ = 0.002 }
+		PSet BarrelLayers = {
+			double dX = 0.00105 double dY = 0.00105 double dZ = 0.0050
+			double phiZ = 0.000009
+		}
+	}
+	
+	// TID
+	PSet TIDs = {
+		double scale = 1.0
+		PSet Dets     = { double dX = 0.00105 double dY = 0.00105 double dZ = 0.00105 }
+		PSet TIDRings = { double dX = 0.003   double dY = 0.003   double dZ = 0.003 }
+		PSet TIDLayers = {
+			double dX = 0.004 double dY = 0.004 double dZ = 0.004
+			double phiZ = 0.000010
+		}
+	}
+	
+	// TOB
+	PSet TOBs = {
+		double scale = 1.0
+		PSet Dets = { double dX = 0.001 double dY = 0.001 double dZ = 0.001 }
+		PSet Rods = { double dX = 0.001 double dY = 0.001 double dZ = 0.001 }
+		PSet BarrelLayers = { //!\\ This should be improved: TOB layers do not make sense!
+			double dX = 0.00067 double dY = 0.00067 double dZ = 0.0050
+			double phiZ = 0.0000059
+		}
+	}
+	
+	// TEC
+	PSet TECs = {
+		double scale = 1.0
+		PSet Dets   = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
+		PSet Petals = { double dX = 0.001  double dY = 0.001  double dZ = 0.001 }
+		PSet EndcapLayers = {
+			double dX = 0.00057 double dY = 0.00057 double dZ = 0.00500
+			double phiZ = 0.0000046
+		}
+	}
+
+}
+
+
