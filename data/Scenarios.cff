@@ -18,6 +18,9 @@ block MisalignmentScenarioSettings =
 	string distribution = 'gaussian'
 	int32 seed = 1234567
 	bool  setError = true
+
+        bool setRotations = true
+        bool setTranslations = true
 }
 
 
@@ -325,6 +328,41 @@ block TrackerLongTermScenario =
 		}
 	}
 
+  }
+  
+  
+// -----------------------------------------------------------------------
+// Misalignment scenario for CSA06
+block TrackerCSA06Scenario =
+{
+
+	untracked bool dumpBefore  = false  // This is actually the default
+	untracked bool dumpAfter   = false  // This is actually the default
+	untracked bool saveToDbase = false  // This is actually the default
+	
+	string distribution = 'flat'
+	int32 seed = 1234567
+	bool  setError = true
+
+	PSet TIBs = {
+		PSet Dets = { double dXlocal = 0.01 
+			double localX = 0.01 double localY = 0.01 double localZ = 0.01 }
+		PSet BarrelLayer1 = { PSet Dets = { double dYlocal = 0.01 double dZlocal = 0.01 } }
+		PSet BarrelLayer2 = { PSet Dets = { double dYlocal = 0.01 double dZlocal = 0.01 } }
+	}
+
+	PSet TOBs = {
+		PSet Rods = { double dXlocal = 0.01 
+			double localX = 0.01 double localY = 0.01 double localZ = 0.01 }
+		PSet BarrelLayer1 = { PSet Rods = { double dYlocal = 0.01 double dZlocal = 0.01 } }
+		PSet BarrelLayer2 = { PSet Rods = { double dYlocal = 0.01 double dZlocal = 0.01 } }
+
+		// Fix layer 6
+		PSet BarrelLayer6 = { 
+			PSet Rods = {
+				double dXlocal = 0.0
+				double localX = 0.0 double localY = 0.0 double localZ = 0.0 
+			}
+		}
+	}
 }
-
-
