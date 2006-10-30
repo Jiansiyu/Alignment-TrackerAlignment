@@ -19,3 +19,6 @@
   <flags SEAL_PLUGIN_NAME="testTrackerHierarchy">
 </library>
 
+<library file=TestDBCopy.cpp name=testDBCopy>
+  <flags SEAL_PLUGIN_NAME="testDBCopy">
+</library>
