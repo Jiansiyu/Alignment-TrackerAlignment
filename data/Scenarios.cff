@@ -346,14 +346,14 @@ block TrackerCSA06Scenario =
 
 	PSet TIBs = {
 		PSet Dets = { double dXlocal = 0.01 
-			double localX = 0.01 double localY = 0.01 double localZ = 0.01 }
+			double phiXlocal = 0.01 double phiYlocal = 0.01 double phiZlocal = 0.01 }
 		PSet BarrelLayer1 = { PSet Dets = { double dYlocal = 0.01 double dZlocal = 0.01 } }
 		PSet BarrelLayer2 = { PSet Dets = { double dYlocal = 0.01 double dZlocal = 0.01 } }
 	}
 
 	PSet TOBs = {
 		PSet Rods = { double dXlocal = 0.01 
-			double localX = 0.01 double localY = 0.01 double localZ = 0.01 }
+			double phiXlocal = 0.01 double phiYlocal = 0.01 double phiZlocal = 0.01 }
 		PSet BarrelLayer1 = { PSet Rods = { double dYlocal = 0.01 double dZlocal = 0.01 } }
 		PSet BarrelLayer2 = { PSet Rods = { double dYlocal = 0.01 double dZlocal = 0.01 } }
 
@@ -361,7 +361,7 @@ block TrackerCSA06Scenario =
 		PSet BarrelLayer6 = { 
 			PSet Rods = {
 				double dXlocal = 0.0
-				double localX = 0.0 double localY = 0.0 double localZ = 0.0 
+				double phiXlocal = 0.0 double phiYlocal = 0.0 double phiZlocal = 0.0 
 			}
 		}
 	}
