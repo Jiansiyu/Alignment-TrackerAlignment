@@ -260,8 +260,6 @@ block TrackerLongTermScenario =
 	
 	using MisalignmentScenarioSettings
 
-	string distribution = 'gaussian'
-	
 	// TPB
 	PSet TPBs = {
 		double scale = 1.0
