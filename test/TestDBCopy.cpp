@@ -24,8 +24,11 @@
 
 class  TestDBCopy : public edm::EDAnalyzer {
  public:
-  explicit  TestDBCopy(const edm::ParameterSet& iConfig ) {};
-  ~TestDBCopy() ;
+  explicit  TestDBCopy(const edm::ParameterSet& iConfig ) :
+    theAlignRecordName( "Alignments" ),
+    theErrorRecordName( "AlignmentErrors" ) {}
+
+  ~TestDBCopy() {}
 
   virtual void analyze( const edm::Event& evt, const edm::EventSetup& evtSetup);
 
@@ -34,13 +37,9 @@ class  TestDBCopy : public edm::EDAnalyzer {
   Alignments* myAlignments;
   AlignmentErrors* myAlignmentErrors;
 
+  std::string theAlignRecordName, theErrorRecordName;
+
 };
-
-
-TestDBCopy::~TestDBCopy( )
-{
-
-}
 
 
 void TestDBCopy::analyze( const edm::Event& evt, const edm::EventSetup& iSetup)
@@ -60,18 +59,21 @@ void TestDBCopy::analyze( const edm::Event& evt, const edm::EventSetup& iSetup)
   // Call service
   if( !poolDbService.isAvailable() ) // Die if not available
 	throw cms::Exception("NotAvailable") << "PoolDBOutputService not available";
-	  
-  // Define callback tokens for the two records
-  size_t alignmentsToken = poolDbService->callbackToken("Alignments");
-  size_t alignmentErrorsToken = poolDbService->callbackToken("AlignmentErrors");
-	  
-  // Store
-  poolDbService->newValidityForNewPayload<Alignments>( &(*myAlignments), 
-                                                       poolDbService->endOfTime(), 
-                                                       alignmentsToken );
-  poolDbService->newValidityForNewPayload<AlignmentErrors>( &(*myAlignmentErrors), 
-                                                            poolDbService->endOfTime(), 
-                                                            alignmentErrorsToken );
+
+  if ( poolDbService->isNewTagRequest(theAlignRecordName) )
+    poolDbService->createNewIOV<Alignments>( &(*myAlignments), poolDbService->endOfTime(), 
+                                             theAlignRecordName );
+  else
+    poolDbService->appendSinceTime<Alignments>( &(*myAlignments), poolDbService->currentTime(), 
+                                                theAlignRecordName );
+  if ( poolDbService->isNewTagRequest(theErrorRecordName) )
+    poolDbService->createNewIOV<AlignmentErrors>( &(*myAlignmentErrors),
+                                                  poolDbService->endOfTime(), 
+                                                  theErrorRecordName );
+  else
+    poolDbService->appendSinceTime<AlignmentErrors>( &(*myAlignmentErrors),
+                                                     poolDbService->currentTime(), 
+                                                     theErrorRecordName );
 
 }
 
