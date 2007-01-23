@@ -1,3 +1,17 @@
+// -*- C++ -*-
+//
+// Package:    TestAnalyzer
+// Class:      TestAnalyzer
+// 
+//
+// Description: Module to copy from one DB to the other
+//
+//
+// Original Author:  Frederic Ronga (CERN-PH)
+//         Created:  November 2006
+//
+
+
 #include <string>
 #include <map>
 #include <vector>
@@ -25,8 +39,8 @@
 class  TestDBCopy : public edm::EDAnalyzer {
  public:
   explicit  TestDBCopy(const edm::ParameterSet& iConfig ) :
-    theAlignRecordName( "Alignments" ),
-    theErrorRecordName( "AlignmentErrors" ) {}
+    theAlignRecordName( "TrackerAlignmentRcd" ),
+    theErrorRecordName( "TrackerAlignmentErrorRcd" ) {}
 
   ~TestDBCopy() {}
 
