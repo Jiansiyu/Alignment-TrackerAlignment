@@ -8,17 +8,17 @@
 <use name=FWCore/MessageLogger> 
 
 <library file=TestAnalyzer.cpp name=testTrackerAlignment>
-  <flags SEAL_PLUGIN_NAME="testTrackerAlignment">
+  <flags EDM_PLUGIN=1>
 </library>
 
 <library file=TestReader.cpp name=testReadAlignment>
-  <flags SEAL_PLUGIN_NAME="testReadAlignment">
+  <flags EDM_PLUGIN=1>
 </library>
 
 <library file=TestTrackerHierarchy.cpp name=testTrackerHierarchy>
-  <flags SEAL_PLUGIN_NAME="testTrackerHierarchy">
+  <flags EDM_PLUGIN=1>
 </library>
 
 <library file=TestDBCopy.cpp name=testDBCopy>
-  <flags SEAL_PLUGIN_NAME="testDBCopy">
+  <flags EDM_PLUGIN=1>
 </library>
