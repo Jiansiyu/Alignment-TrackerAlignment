@@ -389,24 +389,18 @@ block Tracker10pbScenario =
 	}
 	
 	// TPE
-	// new hierarchy for TPE used
-	PSet TPEs = {
-		double scale = 1.0
-		string distribution = 'gaussian'
-
-                 PSet DetUnits =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
-		double phiXlocal = 0.000011 double phiYlocal = 0.000011 double phiZlocal = 0.000011}
-                 PSet Panels =     { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
-		double phiXlocal = 0.000022 double phiYlocal = 0.000022 double phiZlocal = 0.000022}
-                 PSet Blades =       { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
-		double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
-                 PSet HalfDisks = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
-		double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
-// HalfCylinders do not work yet!
-//	PSet HalfCylinders =
-//               {
-//                       double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
-//               }
+	// misalignment from new scenarios expressed in 'base' of old hierarchy
+	// interpretation: petals = panels&blades summed quadratically
+	 PSet TPEs = {
+		 double scale = 1.0
+		 string distribution = 'gaussian'
+		PSet Dets = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 
+			double phiXlocal = 0.000011 double phiYlocal = 0.000011 double phiZlocal = 0.000011}
+		PSet Petals = { double dX = 0.00014 double dY = 0.00014 double dZ = 0.00014 
+			double phiXlocal = 0.000027 double phiYlocal = 0.000027 double phiZlocal = 0.000027}
+		PSet EndcapLayers = {
+			double dX = 0.0010 double dY = 0.0010 double dZ = 0.0010
+			double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
 	}
 	
 	// TIB
@@ -486,24 +480,18 @@ block Tracker100pbScenario =
 	}
 	
 	// TPE
-	// new hierarchy for TPE used
-	PSet TPEs = {
-		double scale = 1.0
-		string distribution = 'gaussian'
-
-                 PSet DetUnits =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
-		double phiXlocal = 0.000011 double phiYlocal = 0.000011 double phiZlocal = 0.000011}
-                 PSet Panels =     { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
-		double phiXlocal = 0.000022 double phiYlocal = 0.000022 double phiZlocal = 0.000022}
-                 PSet Blades =       { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
-		double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
-                 PSet HalfDisks = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
-		double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
-// HalfCylinders do not work yet!
-//	PSet HalfCylinders =
-//               {
-//                       double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
-//               }
+	// misalignment from new scenarios expressed in 'base' of old hierarchy
+	// interpretation: petals = panels&blades summed quadratically
+	 PSet TPEs = {
+		 double scale = 1.0
+		 string distribution = 'gaussian'
+		PSet Dets = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 
+			double phiXlocal = 0.000011 double phiYlocal = 0.000011 double phiZlocal = 0.000011}
+		PSet Petals = { double dX = 0.00014 double dY = 0.00014 double dZ = 0.00014 
+			double phiXlocal = 0.000027 double phiYlocal = 0.000027 double phiZlocal = 0.000027}
+		PSet EndcapLayers = {
+			double dX = 0.0010 double dY = 0.0010 double dZ = 0.0010
+			double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
 	}
 	
 	// TIB
@@ -584,24 +572,18 @@ block Tracker1000pbScenario =
 	}
 	
 	// TPE
-	// new hierarchy for TPE used
-	PSet TPEs = {
-		double scale = 1.0
-		string distribution = 'gaussian'
-
-                 PSet DetUnits =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
-		double phiXlocal = 0.000011 double phiYlocal = 0.000011 double phiZlocal = 0.000011}
-                 PSet Panels =     { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
-		double phiXlocal = 0.000011 double phiYlocal = 0.000011 double phiZlocal = 0.000011}
-                 PSet Blades =       { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
-		double phiXlocal = 0.000007 double phiYlocal = 0.000007 double phiZlocal = 0.000007}
-                 PSet HalfDisks = { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
-		double phiXlocal = 0.000007 double phiYlocal = 0.000007 double phiZlocal = 0.000007}
-// HalfCylinders do not work yet!
-//	PSet HalfCylinders =
-//               {
-//                       double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
-//               }
+	// misalignment from new scenarios expressed in 'base' of old hierarchy
+	// interpretation: petals = panels&blades summed quadratically
+	 PSet TPEs = {
+		 double scale = 1.0
+		 string distribution = 'gaussian'
+		PSet Dets = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 
+			double phiXlocal = 0.000011 double phiYlocal = 0.000011 double phiZlocal = 0.000011}
+		PSet Petals = { double dX = 0.00007 double dY = 0.00007 double dZ = 0.00007 
+			double phiXlocal = 0.000013 double phiYlocal = 0.000013 double phiZlocal = 0.000013}
+		PSet EndcapLayers = {
+			double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005
+			double phiXlocal = 0.000007 double phiYlocal = 0.000007 double phiZlocal = 0.000007}
 	}
 	
 	// TIB
