@@ -394,19 +394,19 @@ block Tracker10pbScenario =
 		double scale = 1.0
 		string distribution = 'gaussian'
 
-                 PSet DetUnits =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet DetUnits =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000011 double phiYlocal = 0.000011 double phiZlocal = 0.000011}
-                 PSet Panels =     { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
+                 PSet Panels =     { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000022 double phiYlocal = 0.000022 double phiZlocal = 0.000022}
-                 PSet Blades =       { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
+                 PSet Blades =       { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
-                 PSet HalfDisks = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
+                 PSet HalfDisks = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
 // HalfCylinders do not work yet!
 //	PSet HalfCylinders =
-//               {
-//                       double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
-//               }
+//               {
+//                       double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
+//               }
 	}
 	
 	// TIB
@@ -491,19 +491,19 @@ block Tracker100pbScenario =
 		double scale = 1.0
 		string distribution = 'gaussian'
 
-                 PSet DetUnits =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet DetUnits =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000011 double phiYlocal = 0.000011 double phiZlocal = 0.000011}
-                 PSet Panels =     { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
+                 PSet Panels =     { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000022 double phiYlocal = 0.000022 double phiZlocal = 0.000022}
-                 PSet Blades =       { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
+                 PSet Blades =       { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
-                 PSet HalfDisks = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
+                 PSet HalfDisks = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
 // HalfCylinders do not work yet!
 //	PSet HalfCylinders =
-//               {
-//                       double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
-//               }
+//               {
+//                       double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
+//               }
 	}
 	
 	// TIB
@@ -589,19 +589,19 @@ block Tracker1000pbScenario =
 		double scale = 1.0
 		string distribution = 'gaussian'
 
-                 PSet DetUnits =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet DetUnits =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000011 double phiYlocal = 0.000011 double phiZlocal = 0.000011}
-                 PSet Panels =     { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet Panels =     { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000011 double phiYlocal = 0.000011 double phiZlocal = 0.000011}
-                 PSet Blades =       { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet Blades =       { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000007 double phiYlocal = 0.000007 double phiZlocal = 0.000007}
-                 PSet HalfDisks = { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet HalfDisks = { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000007 double phiYlocal = 0.000007 double phiZlocal = 0.000007}
 // HalfCylinders do not work yet!
 //	PSet HalfCylinders =
-//               {
-//                       double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
-//               }
+//               {
+//                       double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
+//               }
 	}
 	
 	// TIB
