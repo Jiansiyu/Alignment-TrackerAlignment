@@ -458,7 +458,7 @@ block Tracker10pbScenario =
 		PSet Petals = {	double dXlocal = 0.0070 double dYlocal = 0.0070 double dZlocal = 0.0070 
 				double phiXlocal = 0.000030 double phiYlocal = 0.000030 double phiZlocal = 0.000030}
 		PSet EndcapLayers = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0150
-				double phiXlocal = 0.000030 double phiYlocal = 0.000030 double phiZlocal = 0.000030}
+				double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
 	}
 
 
@@ -743,7 +743,7 @@ block Tracker10pbScenario_13x =
 		PSet Petals = {	double dXlocal = 0.0070 double dYlocal = 0.0070 double dZlocal = 0.0070 
 				double phiXlocal = 0.000030 double phiYlocal = 0.000030 double phiZlocal = 0.000030}
 		PSet EndcapLayers = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0150
-				double phiXlocal = 0.000030 double phiYlocal = 0.000030 double phiZlocal = 0.000030}
+				double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
 	}
 
 
