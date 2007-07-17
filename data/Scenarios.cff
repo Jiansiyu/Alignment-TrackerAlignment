@@ -394,7 +394,7 @@ block Tracker10pbScenario =
 		double scale = 1.0
 		string distribution = 'gaussian'
 
-                 PSet DetUnits =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet Dets =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000100 double phiYlocal = 0.000100 double phiZlocal = 0.000100}
                  PSet Panels =     { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000200 double phiYlocal = 0.000200 double phiZlocal = 0.000200}
@@ -491,7 +491,7 @@ block Tracker100pbScenario =
 		double scale = 1.0
 		string distribution = 'gaussian'
 
-                 PSet DetUnits =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet Dets =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000011 double phiYlocal = 0.000011 double phiZlocal = 0.000011}
                  PSet Panels =     { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000022 double phiYlocal = 0.000022 double phiZlocal = 0.000022}
@@ -589,7 +589,7 @@ block Tracker1000pbScenario =
 		double scale = 1.0
 		string distribution = 'gaussian'
 
-                 PSet DetUnits =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet Dets =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000011 double phiYlocal = 0.000011 double phiZlocal = 0.000011}
                  PSet Panels =     { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000011 double phiYlocal = 0.000011 double phiZlocal = 0.000011}
