@@ -710,7 +710,7 @@ block TrackerSurveyLASOnlyScenario =
 		PSet Rods = { string distribution = 'flat'
 			double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050 
 			double phiXlocal = 0.000020 double phiYlocal = 0.000020 double phiZlocal = 0.000020 }
-		PSet PixelHalfBarrelLayers = { string distribution = 'gaussian
+		PSet PixelHalfBarrelLayers = { string distribution = 'gaussian'
 			double dX = 0.0225 double dY = 0.0225 double dZ = 0.0337
 			double phiXlocal = 0.000010 double phiYlocal = 0.000010 double phiZlocal = 0.000010 }
 	}
@@ -1083,7 +1083,7 @@ block TrackerSurveyLASOnlyScenario_13x =
 		PSet Rods = { string distribution = 'flat'
 			double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050 
 			double phiXlocal = 0.000020 double phiYlocal = 0.000020 double phiZlocal = 0.000020 }
-		PSet PixelHalfBarrelLayers = { string distribution = 'gaussian
+		PSet PixelHalfBarrelLayers = { string distribution = 'gaussian'
 			double dX = 0.0225 double dY = 0.0225 double dZ = 0.0337
 			double phiXlocal = 0.000010 double phiYlocal = 0.000010 double phiZlocal = 0.000010 }
 	}
