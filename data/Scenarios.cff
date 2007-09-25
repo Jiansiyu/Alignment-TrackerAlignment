@@ -877,7 +877,7 @@ block TrackerSurveyLASCosmicsScenario =
 				double phiXlocal = 0.000850 double phiYlocal = 0.000850 double phiZlocal = 0.000850}
 		PSet TIDLayers = {
 			double dXlocal = 0.0300 double dYlocal = 0.0300 double dZlocal = 0.0300
-				double phiXlocal = 0.000456 double phiYlocal = 0.000456 double phiZlocal = 0.000456
+				double phiXlocal = 0.000456 double phiYlocal = 0.000456 double phiZlocal = 0.000456}
 		PSet TIDs = {
 			double dXlocal = 0.0225 double dYlocal = 0.0225 double dZlocal = 0.0225
 				double phiXlocal = 0.000325 double phiYlocal = 0.000325 double phiZlocal = 0.000325}
@@ -1369,7 +1369,7 @@ block TrackerSurveyLASCosmicsScenario_13x =
 				double phiXlocal = 0.000850 double phiYlocal = 0.000850 double phiZlocal = 0.000850}
 		PSet TIDLayers = {
 			double dXlocal = 0.0300 double dYlocal = 0.0300 double dZlocal = 0.0300
-				double phiXlocal = 0.000456 double phiYlocal = 0.000456 double phiZlocal = 0.000456
+				double phiXlocal = 0.000456 double phiYlocal = 0.000456 double phiZlocal = 0.000456}
 		PSet TIDs = {
 			double dXlocal = 0.0225 double dYlocal = 0.0225 double dZlocal = 0.0225
 				double phiXlocal = 0.000325 double phiYlocal = 0.000325 double phiZlocal = 0.000325}
