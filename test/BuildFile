@@ -22,3 +22,7 @@
 <library file=TestDBCopy.cpp name=testDBCopy>
   <flags EDM_PLUGIN=1>
 </library>
+
+<library file=ApeAdder.cpp name=testTrackerAddApe>
+  <flags EDM_PLUGIN=1>
+</library>
