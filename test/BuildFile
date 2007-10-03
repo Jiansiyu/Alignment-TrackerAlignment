@@ -2,7 +2,7 @@
 <use name=Geometry/TrackerNumberingBuilder>
 <use name=Alignment/TrackerAlignment>
 <use name=CondFormats/Alignment>
-<use name=CondFormats/DataRecord>
+<use name=CondFormats/AlignmentRecord>
 
 <use name=FWCore/Framework> 
 <use name=FWCore/MessageLogger> 
