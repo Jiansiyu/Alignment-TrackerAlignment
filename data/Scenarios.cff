@@ -831,7 +831,7 @@ block TrackerSurveyLASCosmicsScenario =
 			double dXlocal = 0.0020 double dYlocal = 0.0020 double dZlocal = 0.0020 
 			double phiXlocal = 0.000009 double phiYlocal = 0.000009 double phiZlocal = 0.000009 }
 		PSet PixelHalfBarrelLayers = { string distribution = 'gaussian'
-			double dX = 0.0118 double dY = 0.0118 double dZ = 0.0337 
+			double dX = 0.0118 double dY = 0.0118 double dZ = 0.0174 
 			double phiXlocal = 0.000009 double phiYlocal = 0.000009 double phiZlocal = 0.000009 }
 	}
 	
@@ -1324,7 +1324,7 @@ block TrackerSurveyLASCosmicsScenario_13x =
 			double dXlocal = 0.0020 double dYlocal = 0.0020 double dZlocal = 0.0020 
 			double phiXlocal = 0.000009 double phiYlocal = 0.000009 double phiZlocal = 0.000009 }
 		PSet PixelHalfBarrelLayers = { string distribution = 'gaussian'
-			double dX = 0.0118 double dY = 0.0118 double dZ = 0.0337 
+			double dX = 0.0118 double dY = 0.0118 double dZ = 0.0174 
 			double phiXlocal = 0.000009 double phiYlocal = 0.000009 double phiZlocal = 0.000009 }
 	}
 	
