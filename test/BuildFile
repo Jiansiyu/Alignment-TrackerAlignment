@@ -2,7 +2,7 @@
 <use name=Geometry/TrackerNumberingBuilder>
 <use name=Alignment/TrackerAlignment>
 <use name=CondFormats/Alignment>
-<use name=CondFormats/AlignmentRecord>
+<use name=CondFormats/DataRecord>
 
 <use name=FWCore/Framework> 
 <use name=FWCore/MessageLogger> 
@@ -20,9 +20,5 @@
 </library>
 
 <library file=TestDBCopy.cpp name=testDBCopy>
-  <flags EDM_PLUGIN=1>
-</library>
-
-<library file=ApeAdder.cpp name=testTrackerAddApe>
   <flags EDM_PLUGIN=1>
 </library>
