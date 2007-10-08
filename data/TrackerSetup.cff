@@ -1,0 +1,19 @@
+include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"
+include "Geometry/TrackerNumberingBuilder/data/trackerNumberingGeometry.cfi"
+
+module Tracker = TrackerFromGeometry {}
+
+module TrackerUnit = AlignablesFromGeometry
+{
+  untracked PSet tracker =
+  {
+    string pixelBarrel = "TPBModule"
+    string pixelEndcap = "TPEModule"
+    string innerBarrel = "TIBModule"
+    string innerEndcap = "TIDModule"
+    string outerBarrel = "TOBModule"
+    string outerEndcap = "TECModule"
+  }
+}
+
+sequence TrackerSetup = { Tracker, TrackerUnit }
