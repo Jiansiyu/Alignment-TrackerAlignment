@@ -1,28 +1,11 @@
 <use name=root>
-<use name=Geometry/TrackerNumberingBuilder>
 <use name=Alignment/TrackerAlignment>
 <use name=CondFormats/Alignment>
 <use name=CondFormats/AlignmentRecord>
-
 <use name=FWCore/Framework> 
 <use name=FWCore/MessageLogger> 
+<use name=Geometry/TrackerGeometryBuilder>
 
-<library file=TestAnalyzer.cpp name=testTrackerAlignment>
-  <flags EDM_PLUGIN=1>
-</library>
-
-<library file=TestReader.cpp name=testReadAlignment>
-  <flags EDM_PLUGIN=1>
-</library>
-
-<library file=TestTrackerHierarchy.cpp name=testTrackerHierarchy>
-  <flags EDM_PLUGIN=1>
-</library>
-
-<library file=TestDBCopy.cpp name=testDBCopy>
-  <flags EDM_PLUGIN=1>
-</library>
-
-<library file=ApeAdder.cpp name=testTrackerAddApe>
+<library file=*.cpp name=AlignmentTrackerAlignmentTest>
   <flags EDM_PLUGIN=1>
 </library>
