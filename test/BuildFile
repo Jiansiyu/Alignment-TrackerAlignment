@@ -1,11 +1,39 @@
-<use name=root>
+<use name=rootcore>
 <use name=Alignment/TrackerAlignment>
-<use name=CondFormats/Alignment>
-<use name=CondFormats/AlignmentRecord>
-<use name=FWCore/Framework> 
-<use name=FWCore/MessageLogger> 
+<use name=DataFormats/TrackingRecHit>
+<use name=FWCore/Framework>
+<use name=FWCore/MessageLogger>
+<use name=FWCore/ParameterSet>
+<use name=Geometry/Records>
 <use name=Geometry/TrackerGeometryBuilder>
 
-<library file=*.cpp name=AlignmentTrackerAlignmentTest>
+<library file=TestAnalyzer.cpp name=testTrackerAlignment>
+  <use name=Geometry/CommonDetUnit>
+  <use name=root>
+  <flags EDM_PLUGIN=1>
+</library>
+
+<library file=TestReader.cpp name=testReadAlignment>
+  <flags EDM_PLUGIN=1>
+</library>
+
+<library file=TestTrackerHierarchy.cpp name=testTrackerHierarchy>
+  <flags EDM_PLUGIN=1>
+</library>
+
+<library file=TestDBCopy.cpp name=testDBCopy>
+  <use name=CondCore/DBCommon>  
+  <use name=CondCore/DBOutputService>
+  <use name=CondFormats/Alignment>
+  <use name=CondFormats/DataRecord>
+  <use name=FWCore/ServiceRegistry>
+  <flags EDM_PLUGIN=1>
+</library>
+
+<library file=ApeAdder.cpp name=testTrackerAddApe>
+  <use name=CondCore/DBOutputService>
+  <use name=CondFormats/Alignment>
+  <use name=CondFormats/DataRecord>
+  <use name=FWCore/ServiceRegistry>
   <flags EDM_PLUGIN=1>
 </library>
