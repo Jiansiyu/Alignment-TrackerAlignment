@@ -11,9 +11,7 @@
 // General settings common to all scenarios
 block MisalignmentScenarioSettings = 
 {
-	untracked bool dumpBefore  = false  // This is actually the default
-	untracked bool dumpAfter   = false  // This is actually the default
-	untracked bool saveToDbase = false  // This is actually the default
+	untracked bool saveToDbase = false
 	
 	string distribution = 'gaussian'
 	int32 seed = 1234567
@@ -32,12 +30,12 @@ block TrackerExampleScenario =
 	
 	PSet TOBs = {
 		double dX = 0.2
-		PSet BarrelLayer1 = { double phiX = 0.03 }
+		PSet TOBLayer1 = { double phiX = 0.03 }
 	}
 	
 	PSet TOB1 = {
-		PSet BarrelLayers = { double dX = 0.1 }
-		PSet BarrelLayer1 = { double dX = 0.2 }
+		PSet TOBLayers = { double dX = 0.1 }
+		PSet TOBLayer1 = { double dX = 0.2 }
 	}
 
 }
@@ -334,9 +332,7 @@ block TrackerLongTermScenario =
 block TrackerCSA06Scenario =
 {
 
-	untracked bool dumpBefore  = false  // This is actually the default
-	untracked bool dumpAfter   = false  // This is actually the default
-	untracked bool saveToDbase = false  // This is actually the default
+	untracked bool saveToDbase = false 
 	
 	string distribution = 'flat'
 	int32 seed = 1234567
