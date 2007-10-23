@@ -25,7 +25,7 @@
   <use name=CondCore/DBCommon>  
   <use name=CondCore/DBOutputService>
   <use name=CondFormats/Alignment>
-  <use name=CondFormats/DataRecord>
+  <use name=CondFormats/AlignmentRecord>
   <use name=FWCore/ServiceRegistry>
   <flags EDM_PLUGIN=1>
 </library>
@@ -33,7 +33,7 @@
 <library file=ApeAdder.cpp name=testTrackerAddApe>
   <use name=CondCore/DBOutputService>
   <use name=CondFormats/Alignment>
-  <use name=CondFormats/DataRecord>
+  <use name=CondFormats/AlignmentRecord>
   <use name=FWCore/ServiceRegistry>
   <flags EDM_PLUGIN=1>
 </library>
