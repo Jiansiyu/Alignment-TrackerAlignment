@@ -5,7 +5,24 @@
 // in any place where a PSet could be used.
 //
 // See corresponding .cff files for examples.
-
+//
+// Note: following scenarios updated to new hierarchy
+// with CMSSW_1_7_0 (numbers only copied, scenarios were
+// not revised): 10/100/1000 pb-1, TrackerSurveyOnly,
+// TrackerSurveyLAS
+//
+// Hierarchylevels not used in this update:
+// TPBHalfBarrel
+// TPBBarrel
+// TPEEndcap
+// TIBSurface
+// TIBHalfShell
+// TIBHalfBarrel
+// TIBBarrel
+// TIDSide
+// TOBBarrel
+// TECRing
+// TECEndcap
 
 // -----------------------------------------------------------------------
 // General settings common to all scenarios
@@ -145,12 +162,10 @@ block TrackerORCAShortTermScenario =
 
 }
 
-
-
 // -----------------------------------------------------------------------
 // Short term misalignment scenario (as interpreted from AN-2005-036)
 // Layer movements applied at layer level
-block TrackerShortTermScenario =
+block obsoleteTrackerShortTermScenario =
 {
 	
 	using MisalignmentScenarioSettings
@@ -159,9 +174,9 @@ block TrackerShortTermScenario =
 	PSet TPBs = {
 		string distribution = 'gaussian'
 		double scale = 1.0
-		PSet Dets = { double dX = 0.0013 double dY = 0.0013 double dZ = 0.0013 }
-		PSet Rods = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
-		PSet PixelHalfBarrelLayers = {
+		PSet TPBModules = { double dX = 0.0013 double dY = 0.0013 double dZ = 0.0013 }
+		PSet TPBLadders = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
+		PSet TPBLayers = {
 			double dX = 0.0010 double dY = 0.0010 double dZ = 0.0010
 			double phiZ = 0.000010
 		}
@@ -172,9 +187,11 @@ block TrackerShortTermScenario =
 	PSet TPEs = {
 		double scale = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
-		PSet Petals = { double dX = 0.00025 double dY = 0.00025 double dZ = 0.00025 }
-		PSet EndcapLayers = {
+		PSet TPEModules = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
+		PSet TPEPanels = { double dX = 0.00018 double dY = 0.00018 double dZ = 0.00018 }
+		PSet TPEBlades = { double dX = 0.00018 double dY = 0.00018 double dZ = 0.00018 }
+
+		PSet TPEHalfDisk = {
 			double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005
 			double phiZ = 0.000005
 		}
@@ -183,15 +200,15 @@ block TrackerShortTermScenario =
 	// TIB
 	PSet TIBs = {
 		double scale = 1.0
-		PSet Dets = {
+		PSet TIBModules = {
 			string distribution = 'flat'
 			double dX = 0.02 double dY = 0.02 double dZ = 0.02
 		}
-		PSet Rods = {
+		PSet TIBStrings = {
 			string distribution = 'flat'
 			double dX = 0.02 double dY = 0.02 double dZ = 0.02
 		}
-		PSet BarrelLayers = {
+		PSet TIBLayers = {
 			string distribution = 'gaussian'
 			double dX = 0.0105 double dY = 0.0105 double dZ = 0.0500
 			double phiZ = 0.000090
@@ -202,9 +219,9 @@ block TrackerShortTermScenario =
 	PSet TIDs = {
 		double scale = 1.0
 		string distribution = 'flat'
-		PSet Dets = { double dX = 0.0105 double dY = 0.0105 double dZ = 0.0105 }
+		PSet TIDModules = { double dX = 0.0105 double dY = 0.0105 double dZ = 0.0105 }
 		PSet TIDRings = { double dX = 0.03 double dY = 0.03 double dZ = 0.03 }
-		PSet TIDLayers = {
+		PSet TIDDisks = {
 			double dX = 0.04 double dY = 0.04 double dZ = 0.04
 			double phiZ = 0.000100
 		}
@@ -213,15 +230,15 @@ block TrackerShortTermScenario =
 	// TOB
 	PSet TOBs = {
 		double scale = 1.0
-		PSet Dets = {
+		PSet TOBModules = {
 			string distribution = 'flat'
 			double dX = 0.01 double dY = 0.01 double dZ = 0.01
 		}
-		PSet Rods = { 
+		PSet TOBRods = { 
 			string distribution = 'flat'
 			double dX = 0.01 double dY = 0.01 double dZ = 0.01
 		}
-		PSet BarrelLayers = { //!\\ This should be improved: TOB layers do not make sense!
+		PSet TOBLayers = { //!\\ This should be improved: TOB layers do not make sense!
 			string distribution = 'gaussian'
 			double dX = 0.0067 double dY = 0.0067 double dZ = 0.0500
 			double phiZ = 0.000059
@@ -231,15 +248,15 @@ block TrackerShortTermScenario =
 	// TEC
 	PSet TECs = {
 		double scale = 1.0
-		PSet Dets = {
+		PSet TECModules = {
 			string distribution = 'flat'
 			double dX = 0.005 double dY = 0.005 double dZ = 0.005
 		}
-		PSet Petals = {
+		PSet TECPetals = {
 			string distribution = 'flat'
 			double dX = 0.01 double dY = 0.01 double dZ = 0.01
 		}
-		PSet EndcapLayers = {
+		PSet TECDisks = {
 			string distribution = 'gaussian'
 			double dX = 0.0057 double dY = 0.0057 double dZ = 0.0500
 			double phiZ = 0.000046
@@ -253,7 +270,7 @@ block TrackerShortTermScenario =
 // -----------------------------------------------------------------------
 // Long term misalignment scenario (as interpreted from AN-2005-036)
 // Layer movements applied at layer level
-block TrackerLongTermScenario =
+block obsoleteTrackerLongTermScenario =
 {
 	
 	using MisalignmentScenarioSettings
@@ -261,9 +278,9 @@ block TrackerLongTermScenario =
 	// TPB
 	PSet TPBs = {
 		double scale = 1.0
-		PSet Dets = { double dX = 0.0013 double dY = 0.0013 double dZ = 0.0013 }
-		PSet Rods = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
-		PSet PixelHalfBarrelLayers = {
+		PSet TPBModules = { double dX = 0.0013 double dY = 0.0013 double dZ = 0.0013 }
+		PSet TPBLadders = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
+		PSet TPBLayers = {
 			double dX = 0.0010 double dY = 0.0010 double dZ = 0.0010
 			double phiZ = 0.000010
 		}
@@ -272,9 +289,11 @@ block TrackerLongTermScenario =
 	// TPE
 	PSet TPEs = {
 		double scale = 1.0
-		PSet Dets = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
-		PSet Petals = { double dX = 0.00025 double dY = 0.00025 double dZ = 0.00025 }
-		PSet EndcapLayers = {
+		PSet TPEModules = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
+		PSet TPEPanels = { double dX = 0.00018 double dY = 0.00018 double dZ = 0.00018 }
+		PSet TPEBlades = { double dX = 0.00018 double dY = 0.00018 double dZ = 0.00018 }
+// note the following changed to comply with 1_7_0 hierarchy
+		PSet TPEHalfDisk = {
 			double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005
 			double phiZ = 0.000005
 		}
@@ -283,9 +302,9 @@ block TrackerLongTermScenario =
 	// TIB
 	PSet TIBs = {
 		double scale = 1.0
-		PSet Dets = { double dX = 0.002 double dY = 0.002 double dZ = 0.002 }
-		PSet Rods = { double dX = 0.002 double dY = 0.002 double dZ = 0.002 }
-		PSet BarrelLayers = {
+		PSet TIBModules = { double dX = 0.002 double dY = 0.002 double dZ = 0.002 }
+		PSet TIBStrings = { double dX = 0.002 double dY = 0.002 double dZ = 0.002 }
+		PSet TIBLayers = {
 			double dX = 0.00105 double dY = 0.00105 double dZ = 0.0050
 			double phiZ = 0.000009
 		}
@@ -294,9 +313,9 @@ block TrackerLongTermScenario =
 	// TID
 	PSet TIDs = {
 		double scale = 1.0
-		PSet Dets     = { double dX = 0.00105 double dY = 0.00105 double dZ = 0.00105 }
+		PSet TIDModules     = { double dX = 0.00105 double dY = 0.00105 double dZ = 0.00105 }
 		PSet TIDRings = { double dX = 0.003   double dY = 0.003   double dZ = 0.003 }
-		PSet TIDLayers = {
+		PSet TIDDisks = {
 			double dX = 0.004 double dY = 0.004 double dZ = 0.004
 			double phiZ = 0.000010
 		}
@@ -305,9 +324,9 @@ block TrackerLongTermScenario =
 	// TOB
 	PSet TOBs = {
 		double scale = 1.0
-		PSet Dets = { double dX = 0.001 double dY = 0.001 double dZ = 0.001 }
-		PSet Rods = { double dX = 0.001 double dY = 0.001 double dZ = 0.001 }
-		PSet BarrelLayers = { //!\\ This should be improved: TOB layers do not make sense!
+		PSet TOBModules = { double dX = 0.001 double dY = 0.001 double dZ = 0.001 }
+		PSet TOBRods = { double dX = 0.001 double dY = 0.001 double dZ = 0.001 }
+		PSet TOBLayers = { //!\\ This should be improved: TOB layers do not make sense!
 			double dX = 0.00067 double dY = 0.00067 double dZ = 0.0050
 			double phiZ = 0.0000059
 		}
@@ -316,16 +335,16 @@ block TrackerLongTermScenario =
 	// TEC
 	PSet TECs = {
 		double scale = 1.0
-		PSet Dets   = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
-		PSet Petals = { double dX = 0.001  double dY = 0.001  double dZ = 0.001 }
-		PSet EndcapLayers = {
+		PSet TECModules   = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
+		PSet TECPetals = { double dX = 0.001  double dY = 0.001  double dZ = 0.001 }
+		PSet TECDisks = {
 			double dX = 0.00057 double dY = 0.00057 double dZ = 0.00500
 			double phiZ = 0.0000046
 		}
 	}
 
   }
-  
+
   
 // -----------------------------------------------------------------------
 // Misalignment scenario for CSA06
@@ -409,13 +428,13 @@ block Tracker10pbScenario =
 	// TPB
 	PSet TPBs = {
 		double scale = 1.0
-		PSet Dets = { string distribution = 'gaussian'
+		PSet TPBModules = { string distribution = 'gaussian'
 			double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0060 
 			double phiXlocal = 0.000270 double phiYlocal = 0.000270 double phiZlocal = 0.000270 }
-		PSet Rods = { string distribution = 'gaussian'
+		PSet TPBLadders = { string distribution = 'gaussian'
 			double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010 
 			double phiXlocal = 0.000007 double phiYlocal = 0.000007 double phiZlocal = 0.000007 }
-		PSet PixelHalfBarrelLayers = { string distribution = 'gaussian'
+		PSet TPBLayers = { string distribution = 'gaussian'
 			double dX = 0.0010 double dY = 0.0010 double dZ = 0.0010
 			double phiXlocal = 0.000007 double phiYlocal = 0.000007 double phiZlocal = 0.000007 }
 	}
@@ -426,16 +445,16 @@ block Tracker10pbScenario =
 		double scale = 1.0
 		string distribution = 'gaussian'
 
-                 PSet Dets =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet TPEModules =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000100 double phiYlocal = 0.000100 double phiZlocal = 0.000100}
-                 PSet Panels =     { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
+                 PSet TPEPanels =     { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000200 double phiYlocal = 0.000200 double phiZlocal = 0.000200}
-                 PSet Blades =       { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
+                 PSet TPEBlades =       { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
-                 PSet HalfDisks = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
+                 PSet TPEHalfDisks = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
 // HalfCylinders do not work yet!
-//	PSet HalfCylinders =
+//	PSet TPEHalfCylinders =
 //               {
 //                       double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
 //               }
@@ -445,11 +464,11 @@ block Tracker10pbScenario =
 	PSet TIBs = {
 		string distribution = 'gaussian'
 		double scale = 1.0
-		PSet Dets = { double dXlocal = 0.0180 double dYlocal = 0.0180 double dZlocal = 0.0180
+		PSet TIBModules = { double dXlocal = 0.0180 double dYlocal = 0.0180 double dZlocal = 0.0180
 			double phiXlocal = 0.000412 double phiYlocal = 0.000412 double phiZlocal = 0.000412}
-		PSet Rods = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
+		PSet TIBStrings = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
 			double phiXlocal = 0.000065 double phiYlocal = 0.000065 double phiZlocal = 0.000065}
-		PSet BarrelLayers = {
+		PSet TIBLayers = {
 			double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
 			double phiXlocal = 0.000065 double phiYlocal = 0.000065 double phiZlocal = 0.000065}
 	}
@@ -458,11 +477,11 @@ block Tracker10pbScenario =
 	PSet TIDs = {
 		double scale = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {     double dXlocal = 0.0054 double dYlocal = 0.0054 double dZlocal = 0.0054 
+		PSet TIDModules = {     double dXlocal = 0.0054 double dYlocal = 0.0054 double dZlocal = 0.0054 
 				double phiXlocal = 0.000250 double phiYlocal = 0.000250 double phiZlocal = 0.000250}
 		PSet TIDRings = { double dXlocal = 0.0185 double dYlocal = 0.0185 double dZlocal = 0.0185
 				double phiXlocal = 0.000850 double phiYlocal = 0.000850 double phiZlocal = 0.000850}
-		PSet TIDLayers = {
+		PSet TIDDisks = {
 			double dXlocal = 0.0250 double dYlocal = 0.0250 double dZlocal = 0.0250
 				double phiXlocal = 0.000380 double phiYlocal = 0.000380 double phiZlocal = 0.000380}
 	}
@@ -471,13 +490,13 @@ block Tracker10pbScenario =
 	PSet TOBs = {
 		double scale = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = { double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
+		PSet TOBModules = { double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
 				double phiXlocal = 0.000075 double phiYlocal = 0.000075 double phiZlocal = 0.000075}
-		PSet Rods = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
+		PSet TOBRods = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
 				double phiXlocal = 0.000040 double phiYlocal = 0.000040 double phiZlocal = 0.000040}
-		PSet BarrelLayers = { // Not used since TOB layers do not make sense!
+		PSet TOBLayers = { // Not used since TOB layers do not make sense!
 			double dXlocal = 0.0000 double dYlocal = 0.0000 double dZlocal = 0.0000 }
-		PSet HalfBarrels = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0100 
+		PSet TOBHalfBarrels = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0100 
 				double phiXlocal = 0.000010 double phiYlocal = 0.000010 double phiZlocal = 0.000010}
 	}
 	
@@ -485,11 +504,11 @@ block Tracker10pbScenario =
 	PSet TECs = {
 		double scale = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {   double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
+		PSet TECModules = {   double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
 				double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050}
-		PSet Petals = {	double dXlocal = 0.0070 double dYlocal = 0.0070 double dZlocal = 0.0070 
+		PSet TECPetals = {	double dXlocal = 0.0070 double dYlocal = 0.0070 double dZlocal = 0.0070 
 				double phiXlocal = 0.000030 double phiYlocal = 0.000030 double phiZlocal = 0.000030}
-		PSet EndcapLayers = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0150
+		PSet TECDisks = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0150
 				double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
 	}
 
@@ -506,13 +525,13 @@ block Tracker100pbScenario =
 	// TPB
 	PSet TPBs = {
 		double scale = 1.0
-		PSet Dets = { string distribution = 'gaussian'
+		PSet TPBModules = { string distribution = 'gaussian'
 			double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010 
 			double phiXlocal = 0.000045  double phiYlocal = 0.000045  double phiZlocal = 0.000045 }
-		PSet Rods = { string distribution = 'gaussian'
+		PSet TPBLadders = { string distribution = 'gaussian'
 			double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010 
 			double phiXlocal = 0.000007  double phiYlocal = 0.000007  double phiZlocal = 0.000007 }
-		PSet PixelHalfBarrelLayers = { string distribution = 'gaussian'
+		PSet TPBLayers = { string distribution = 'gaussian'
 			double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005
 			double phiXlocal = 0.000003  double phiYlocal = 0.000003  double phiZlocal = 0.000003 }
 	}
@@ -523,16 +542,16 @@ block Tracker100pbScenario =
 		double scale = 1.0
 		string distribution = 'gaussian'
 
-                 PSet Dets =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet TPEModules =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000011 double phiYlocal = 0.000011 double phiZlocal = 0.000011}
-                 PSet Panels =     { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
+                 PSet TPEPanels =     { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000022 double phiYlocal = 0.000022 double phiZlocal = 0.000022}
-                 PSet Blades =       { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
+                 PSet TPEBlades =       { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
-                 PSet HalfDisks = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
+                 PSet TPEHalfDisks = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
 // HalfCylinders do not work yet!
-//	PSet HalfCylinders =
+//	PSet TPEHalfCylinders =
 //               {
 //                       double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
 //               }
@@ -542,11 +561,11 @@ block Tracker100pbScenario =
 	PSet TIBs = {
 		string distribution = 'gaussian'
 		double scale = 1.0
-		PSet Dets = { double dXlocal = 0.0030 double dYlocal = 0.0030 double dZlocal = 0.0030
+		PSet TIBModules = { double dXlocal = 0.0030 double dYlocal = 0.0030 double dZlocal = 0.0030
 			double phiXlocal = 0.000070 double phiYlocal = 0.000070 double phiZlocal = 0.000070}
-		PSet Rods = { double dXlocal = 0.0030 double dYlocal = 0.0030 double dZlocal = 0.0030
+		PSet TIBStrings = { double dXlocal = 0.0030 double dYlocal = 0.0030 double dZlocal = 0.0030
 			double phiXlocal = 0.000020 double phiYlocal = 0.000020 double phiZlocal = 0.000020}
-		PSet BarrelLayers = {
+		PSet TIBLayers = {
 			double dXlocal = 0.0015 double dYlocal = 0.0015 double dZlocal = 0.0015
 			double phiXlocal = 0.000010 double phiYlocal = 0.000010 double phiZlocal = 0.000010}
 	}
@@ -555,11 +574,11 @@ block Tracker100pbScenario =
 	PSet TIDs = {
 		double scale = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {     double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050 
+		PSet TIDModules = {     double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050 
 				double phiXlocal = 0.000230 double phiYlocal = 0.000230 double phiZlocal = 0.000230}
 		PSet TIDRings = { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
 				double phiXlocal = 0.000230 double phiYlocal = 0.000230 double phiZlocal = 0.000230}
-		PSet TIDLayers = {
+		PSet TIDDisks = {
 			double dXlocal = 0.0025 double dYlocal = 0.0025 double dZlocal = 0.0025
 				double phiXlocal = 0.000040 double phiYlocal = 0.000040 double phiZlocal = 0.000040}
 	}
@@ -568,13 +587,13 @@ block Tracker100pbScenario =
 	PSet TOBs = {
 		double scale = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = { double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
+		PSet TOBModules = { double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
 				double phiXlocal = 0.000070 double phiYlocal = 0.000070 double phiZlocal = 0.000070}
-		PSet Rods = { double dXlocal = 0.0040 double dYlocal = 0.0040 double dZlocal = 0.0040
+		PSet TOBRods = { double dXlocal = 0.0040 double dYlocal = 0.0040 double dZlocal = 0.0040
 				double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
-		PSet BarrelLayers = { // Not used since TOB layers do not make sense!
+		PSet TOBLayers = { // Not used since TOB layers do not make sense!
 			double dXlocal = 0.0000 double dYlocal = 0.0000 double dZlocal = 0.0000 }
-		PSet HalfBarrels = { double dXlocal = 0.0020 double dYlocal = 0.0020 double dZlocal = 0.0020 
+		PSet TOBHalfBarrels = { double dXlocal = 0.0020 double dYlocal = 0.0020 double dZlocal = 0.0020 
 				double phiXlocal = 0.000005 double phiYlocal = 0.000005 double phiZlocal = 0.000005}
 	}
 	
@@ -582,11 +601,11 @@ block Tracker100pbScenario =
 	PSet TECs = {
 		double scale = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {   double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
+		PSet TECModules = {   double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
 				double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050}
-		PSet Petals = {	double dXlocal = 0.0055 double dYlocal = 0.0055 double dZlocal = 0.0055 
+		PSet TECPetals = {	double dXlocal = 0.0055 double dYlocal = 0.0055 double dZlocal = 0.0055 
 				double phiXlocal = 0.000020 double phiYlocal = 0.000020 double phiZlocal = 0.000020}
-		PSet EndcapLayers = { double dXlocal = 0.0030 double dYlocal = 0.0030 double dZlocal = 0.0030
+		PSet TECDisks = { double dXlocal = 0.0030 double dYlocal = 0.0030 double dZlocal = 0.0030
 				double phiXlocal = 0.000005 double phiYlocal = 0.000005 double phiZlocal = 0.000005}
 	}
 
@@ -604,13 +623,13 @@ block Tracker1000pbScenario =
 	// TPB
 	PSet TPBs = {
 		double scale = 1.0
-		PSet Dets = { string distribution = 'gaussian'
+		PSet TPBModules = { string distribution = 'gaussian'
 			double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005 
 			double phiXlocal = 0.000022  double phiYlocal = 0.000022  double phiZlocal = 0.000022 }
-		PSet Rods = { string distribution = 'gaussian'
+		PSet TPBLadders = { string distribution = 'gaussian'
 			double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005 
 			double phiXlocal = 0.000003  double phiYlocal = 0.000003  double phiZlocal = 0.000003 }
-		PSet PixelHalfBarrelLayers = { string distribution = 'gaussian'
+		PSet TPBLayers = { string distribution = 'gaussian'
 			double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005
 			double phiXlocal = 0.000003  double phiYlocal = 0.000003  double phiZlocal = 0.000003 }
 	}
@@ -621,16 +640,16 @@ block Tracker1000pbScenario =
 		double scale = 1.0
 		string distribution = 'gaussian'
 
-                 PSet Dets =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet TPEModules =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000011 double phiYlocal = 0.000011 double phiZlocal = 0.000011}
-                 PSet Panels =     { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet TPEPanels =     { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000011 double phiYlocal = 0.000011 double phiZlocal = 0.000011}
-                 PSet Blades =       { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet TPEBlades =       { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000007 double phiYlocal = 0.000007 double phiZlocal = 0.000007}
-                 PSet HalfDisks = { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet TPEHalfDisks = { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000007 double phiYlocal = 0.000007 double phiZlocal = 0.000007}
 // HalfCylinders do not work yet!
-//	PSet HalfCylinders =
+//	PSet TPEHalfCylinders =
 //               {
 //                       double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
 //               }
@@ -640,11 +659,11 @@ block Tracker1000pbScenario =
 	PSet TIBs = {
 		string distribution = 'gaussian'
 		double scale = 1.0
-		PSet Dets = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
+		PSet TIBModules = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 			double phiXlocal = 0.000020 double phiYlocal = 0.000020 double phiZlocal = 0.000020}
-		PSet Rods = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
+		PSet TIBStrings = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 			double phiXlocal = 0.000005 double phiYlocal = 0.000005 double phiZlocal = 0.000005}
-		PSet BarrelLayers = {
+		PSet TIBLayers = {
 			double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 			double phiXlocal = 0.000005 double phiYlocal = 0.000005 double phiZlocal = 0.000005}
 	}
@@ -653,11 +672,11 @@ block Tracker1000pbScenario =
 	PSet TIDs = {
 		double scale = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {     double dXlocal = 0.0025 double dYlocal = 0.0025 double dZlocal = 0.0025 
+		PSet TIDModules = {     double dXlocal = 0.0025 double dYlocal = 0.0025 double dZlocal = 0.0025 
 				double phiXlocal = 0.000110 double phiYlocal = 0.000110 double phiZlocal = 0.000110}
 		PSet TIDRings = { double dXlocal = 0.0025 double dYlocal = 0.0025 double dZlocal = 0.0025
 				double phiXlocal = 0.000110 double phiYlocal = 0.000110 double phiZlocal = 0.000110}
-		PSet TIDLayers = {
+		PSet TIDDisks = {
 			double dXlocal = 0.0012 double dYlocal = 0.0012 double dZlocal = 0.0012
 				double phiXlocal = 0.000020 double phiYlocal = 0.000020 double phiZlocal = 0.000020}
 	}
@@ -666,13 +685,13 @@ block Tracker1000pbScenario =
 	PSet TOBs = {
 		double scale = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = { double dXlocal = 0.0018 double dYlocal = 0.0018 double dZlocal = 0.0018
+		PSet TOBModules = { double dXlocal = 0.0018 double dYlocal = 0.0018 double dZlocal = 0.0018
 				double phiXlocal = 0.000040 double phiYlocal = 0.000040 double phiZlocal = 0.000040}
-		PSet Rods = { double dXlocal = 0.0018 double dYlocal = 0.0018 double dZlocal = 0.0018
+		PSet TOBRods = { double dXlocal = 0.0018 double dYlocal = 0.0018 double dZlocal = 0.0018
 				double phiXlocal = 0.000007 double phiYlocal = 0.000007 double phiZlocal = 0.000007}
-		PSet BarrelLayers = { // Not used since TOB layers do not make sense!
+		PSet TOBLayers = { // Not used since TOB layers do not make sense!
 			double dXlocal = 0.0000 double dYlocal = 0.0000 double dZlocal = 0.0000 }
-		PSet HalfBarrels = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010 
+		PSet TOBHalfBarrels = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010 
 				double phiXlocal = 0.000002 double phiYlocal = 0.000002 double phiZlocal = 0.000002}
 	}
 	
@@ -680,11 +699,11 @@ block Tracker1000pbScenario =
 	PSet TECs = {
 		double scale = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {   double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
+		PSet TECModules = {   double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
 				double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050}
-		PSet Petals = {	double dXlocal = 0.0040 double dYlocal = 0.0040 double dZlocal = 0.0040 
+		PSet TECPetals = {	double dXlocal = 0.0040 double dYlocal = 0.0040 double dZlocal = 0.0040 
 				double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
-		PSet EndcapLayers = { double dXlocal = 0.0020 double dYlocal = 0.0020 double dZlocal = 0.0020
+		PSet TECDisks = { double dXlocal = 0.0020 double dYlocal = 0.0020 double dZlocal = 0.0020
 				double phiXlocal = 0.000005 double phiYlocal = 0.000005 double phiZlocal = 0.000005}
 	}
 }
@@ -700,13 +719,13 @@ block TrackerSurveyLASOnlyScenario =
 	// TPB
 	PSet TPBs = {
 		double scale = 1.0
-		PSet Dets = { string distribution = 'gaussian'
+		PSet TPBModules = { string distribution = 'gaussian'
 			double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0060 
 			double phiXlocal = 0.000270 double phiYlocal = 0.000270 double phiZlocal = 0.000270 }
-		PSet Rods = { string distribution = 'flat'
+		PSet TPBLadders = { string distribution = 'flat'
 			double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050 
 			double phiXlocal = 0.000020 double phiYlocal = 0.000020 double phiZlocal = 0.000020 }
-		PSet PixelHalfBarrelLayers = { string distribution = 'gaussian'
+		PSet TPBLayers = { string distribution = 'gaussian'
 			double dX = 0.0225 double dY = 0.0225 double dZ = 0.0337
 			double phiXlocal = 0.000010 double phiYlocal = 0.000010 double phiZlocal = 0.000010 }
 	}
@@ -717,28 +736,28 @@ block TrackerSurveyLASOnlyScenario =
 		double scale = 1.0
 		string distribution = 'gaussian'
 
-                 PSet Dets =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet TPEModules =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000100 double phiYlocal = 0.000100 double phiZlocal = 0.000100}
-                 PSet Panels =     { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
+                 PSet TPEPanels =     { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000200 double phiYlocal = 0.000200 double phiZlocal = 0.000200}
-                 PSet Blades =       { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
+                 PSet TPEBlades =       { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000200 double phiYlocal = 0.000200 double phiZlocal = 0.000200}
-                 PSet HalfDisks = { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
+                 PSet TPEHalfDisks = { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
 		double phiXlocal = 0.001000 double phiYlocal = 0.001000 double phiZlocal = 0.001000}
-		PSet HalfCylinders = { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
+		PSet TPEHalfCylinders = { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
 		double phiXlocal = 0.001000 double phiYlocal = 0.001000 double phiZlocal = 0.001000}
-//                 PSet PixelEndcaps = { ... }
+//                 PSet TPEPixelEndcaps = { ... }
 	}
 	
 	// TIB
 	PSet TIBs = {
 		string distribution = 'gaussian'
 		double scale = 1.0
-		PSet Dets = { double dXlocal = 0.0180 double dYlocal = 0.0180 double dZlocal = 0.0180
+		PSet TIBModules = { double dXlocal = 0.0180 double dYlocal = 0.0180 double dZlocal = 0.0180
 			double phiXlocal = 0.000412 double phiYlocal = 0.000412 double phiZlocal = 0.000412}
-		PSet Rods = { double dXlocal = 0.0450 double dYlocal = 0.0450 double dZlocal = 0.0450
+		PSet TIBStrings = { double dXlocal = 0.0450 double dYlocal = 0.0450 double dZlocal = 0.0450
 			double phiXlocal = 0.000293 double phiYlocal = 0.000293 double phiZlocal = 0.000293}
-		PSet BarrelLayers = {
+		PSet TIBLayers = {
 			double dXlocal = 0.0750 double dYlocal = 0.0750 double dZlocal = 0.0750
 			double phiXlocal = 0.000488 double phiYlocal = 0.000488 double phiZlocal = 0.000488}
 	}
@@ -747,14 +766,14 @@ block TrackerSurveyLASOnlyScenario =
 	PSet TIDs = {
 		double scale = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {     double dXlocal = 0.0054 double dYlocal = 0.0054 double dZlocal = 0.0054 
+		PSet TIDModules = {     double dXlocal = 0.0054 double dYlocal = 0.0054 double dZlocal = 0.0054 
 				double phiXlocal = 0.000250 double phiYlocal = 0.000250 double phiZlocal = 0.000250}
 		PSet TIDRings = { double dXlocal = 0.0185 double dYlocal = 0.0185 double dZlocal = 0.0185
 				double phiXlocal = 0.000850 double phiYlocal = 0.000850 double phiZlocal = 0.000850}
-		PSet TIDLayers = {
+		PSet TIDDisks = {
 			double dXlocal = 0.0350 double dYlocal = 0.0350 double dZlocal = 0.0350
 				double phiXlocal = 0.000532 double phiYlocal = 0.000532 double phiZlocal = 0.000532}
-		PSet TIDs = {
+		PSet TIDEndcaps = {
 			double dXlocal = 0.0450 double dYlocal = 0.0450 double dZlocal = 0.0450
 				double phiXlocal = 0.000649 double phiYlocal = 0.000649 double phiZlocal = 0.000649}
 	}
@@ -763,13 +782,13 @@ block TrackerSurveyLASOnlyScenario =
 	PSet TOBs = {
 		double scale = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = { double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
+		PSet TOBModules = { double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
 				double phiXlocal = 0.000075 double phiYlocal = 0.000075 double phiZlocal = 0.000075}
-		PSet Rods = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
+		PSet TOBRods = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
 				double phiXlocal = 0.000040 double phiYlocal = 0.000040 double phiZlocal = 0.000040}
-		PSet BarrelLayers = { // Not used since TOB layers do not make sense!
+		PSet TOBLayers = { // Not used since TOB layers do not make sense!
 			double dXlocal = 0.0000 double dYlocal = 0.0000 double dZlocal = 0.0000 }
-		PSet HalfBarrels = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0500 
+		PSet TOBHalfBarrels = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0500 
 				double phiXlocal = 0.000010 double phiYlocal = 0.000010 double phiZlocal = 0.000010}
 	}
 	
@@ -777,11 +796,11 @@ block TrackerSurveyLASOnlyScenario =
 	PSet TECs = {
 		double scale = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {   double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
+		PSet TECModules = {   double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
 				double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050}
-		PSet Petals = {	double dXlocal = 0.0070 double dYlocal = 0.0070 double dZlocal = 0.0070 
+		PSet TECPetals = {	double dXlocal = 0.0070 double dYlocal = 0.0070 double dZlocal = 0.0070 
 				double phiXlocal = 0.000030 double phiYlocal = 0.000030 double phiZlocal = 0.000030}
-		PSet EndcapLayers = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0150
+		PSet TECDisks = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0150
 				double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
 	}
 
@@ -820,13 +839,13 @@ block TrackerSurveyLASCosmicsScenario =
 	// TPB
 	PSet TPBs = {
 		double scale = 1.0
-		PSet Dets = { string distribution = 'gaussian'
+		PSet TPBModules = { string distribution = 'gaussian'
 			double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0060 
 			double phiXlocal = 0.000270 double phiYlocal = 0.000270 double phiZlocal = 0.000270 }
-		PSet Rods = { string distribution = 'gaussian'
+		PSet TPBLadders = { string distribution = 'gaussian'
 			double dXlocal = 0.0020 double dYlocal = 0.0020 double dZlocal = 0.0020 
 			double phiXlocal = 0.000009 double phiYlocal = 0.000009 double phiZlocal = 0.000009 }
-		PSet PixelHalfBarrelLayers = { string distribution = 'gaussian'
+		PSet TPBLayers = { string distribution = 'gaussian'
 			double dX = 0.0118 double dY = 0.0118 double dZ = 0.0174 
 			double phiXlocal = 0.000009 double phiYlocal = 0.000009 double phiZlocal = 0.000009 }
 	}
@@ -837,28 +856,28 @@ block TrackerSurveyLASCosmicsScenario =
 		double scale = 1.0
 		string distribution = 'gaussian'
 
-                 PSet Dets =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet TPEModules =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000100 double phiYlocal = 0.000100 double phiZlocal = 0.000100}
-                 PSet Panels =     { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
+                 PSet TPEPanels =     { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000200 double phiYlocal = 0.000200 double phiZlocal = 0.000200}
-                 PSet Blades =       { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
+                 PSet TPEBlades =       { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000200 double phiYlocal = 0.000200 double phiZlocal = 0.000200}
-                 PSet HalfDisks = { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
+                 PSet TPEHalfDisks = { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
 		double phiXlocal = 0.001000 double phiYlocal = 0.001000 double phiZlocal = 0.001000}
-		PSet HalfCylinders = { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
+		PSet TPEHalfCylinders = { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
 		double phiXlocal = 0.001000 double phiYlocal = 0.001000 double phiZlocal = 0.001000}
-//                 PSet PixelEndcaps = { ... }
+//                 PSet TPEPixelEndcaps = { ... }
 	}
 	
 	// TIB
 	PSet TIBs = {
 		string distribution = 'gaussian'
 		double scale = 1.0
-		PSet Dets = { double dXlocal = 0.0180 double dYlocal = 0.0180 double dZlocal = 0.0180
+		PSet TIBModules = { double dXlocal = 0.0180 double dYlocal = 0.0180 double dZlocal = 0.0180
 			double phiXlocal = 0.000412 double phiYlocal = 0.000412 double phiZlocal = 0.000412}
-		PSet Rods = { double dXlocal = 0.0275 double dYlocal = 0.0275 double dZlocal = 0.0275
+		PSet TIBStrings = { double dXlocal = 0.0275 double dYlocal = 0.0275 double dZlocal = 0.0275
 			double phiXlocal = 0.000179 double phiYlocal = 0.000179 double phiZlocal = 0.000179}
-		PSet BarrelLayers = { 
+		PSet TIBLayers = { 
 			double dXlocal = 0.0425 double dYlocal = 0.0425 double dZlocal = 0.0425
 			double phiXlocal = 0.000277 double phiYlocal = 0.000277 double phiZlocal = 0.000277}
 	}
@@ -867,14 +886,14 @@ block TrackerSurveyLASCosmicsScenario =
 	PSet TIDs = {
 		double scale = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {     double dXlocal = 0.0054 double dYlocal = 0.0054 double dZlocal = 0.0054 
+		PSet TIDModules = {     double dXlocal = 0.0054 double dYlocal = 0.0054 double dZlocal = 0.0054 
 				double phiXlocal = 0.000250 double phiYlocal = 0.000250 double phiZlocal = 0.000250}
 		PSet TIDRings = { double dXlocal = 0.0185 double dYlocal = 0.0185 double dZlocal = 0.0185
 				double phiXlocal = 0.000850 double phiYlocal = 0.000850 double phiZlocal = 0.000850}
-		PSet TIDLayers = {
+		PSet TIDDisks = {
 			double dXlocal = 0.0300 double dYlocal = 0.0300 double dZlocal = 0.0300
 				double phiXlocal = 0.000456 double phiYlocal = 0.000456 double phiZlocal = 0.000456}
-		PSet TIDs = {
+		PSet TIDEndcaps = {
 			double dXlocal = 0.0225 double dYlocal = 0.0225 double dZlocal = 0.0225
 				double phiXlocal = 0.000325 double phiYlocal = 0.000325 double phiZlocal = 0.000325}
 	}
@@ -883,13 +902,13 @@ block TrackerSurveyLASCosmicsScenario =
 	PSet TOBs = {
 		double scale = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = { double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
+		PSet TOBModules = { double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
 				double phiXlocal = 0.000075 double phiYlocal = 0.000075 double phiZlocal = 0.000075}
-		PSet Rods = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
+		PSet TOBRods = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
 				double phiXlocal = 0.000040 double phiYlocal = 0.000040 double phiZlocal = 0.000040}
-		PSet BarrelLayers = { // Not used since TOB layers do not make sense!
+		PSet TOBLayers = { // Not used since TOB layers do not make sense!
 			double dXlocal = 0.0000 double dYlocal = 0.0000 double dZlocal = 0.0000 }
-		PSet HalfBarrels = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0300 
+		PSet TOBHalfBarrels = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0300 
 				double phiXlocal = 0.000010 double phiYlocal = 0.000010 double phiZlocal = 0.000010}
 	}
 	
@@ -897,11 +916,11 @@ block TrackerSurveyLASCosmicsScenario =
 	PSet TECs = {
 		double scale = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {   double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
+		PSet TECModules = {   double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
 				double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050}
-		PSet Petals = {	double dXlocal = 0.0070 double dYlocal = 0.0070 double dZlocal = 0.0070 
+		PSet TECPetals = {	double dXlocal = 0.0070 double dYlocal = 0.0070 double dZlocal = 0.0070 
 				double phiXlocal = 0.000030 double phiYlocal = 0.000030 double phiZlocal = 0.000030}
-		PSet EndcapLayers = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0150
+		PSet TECDisks = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0150
 				double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
 	}
 
