@@ -1,7 +1,9 @@
 // Framework
 #include "FWCore/Utilities/interface/Exception.h"
+#include "FWCore/Framework/interface/EventSetup.h"
 #include "FWCore/Framework/interface/ESHandle.h"
 #include "FWCore/Framework/interface/ModuleFactory.h"
+#include "FWCore/Framework/interface/ESProducer.h"
 #include "FWCore/MessageLogger/interface/MessageLogger.h"
 
 // Conditions database
@@ -13,11 +15,13 @@
 #include "Geometry/TrackingGeometryAligner/interface/GeometryAligner.h"
 
 // Alignment
+#include "CondFormats/Alignment/interface/Alignments.h"
 #include "CondFormats/Alignment/interface/AlignmentErrors.h"
+#include "CondFormats/Alignment/interface/AlignmentSorter.h"
 #include "Alignment/TrackerAlignment/interface/AlignableTracker.h"
 #include "Alignment/TrackerAlignment/interface/TrackerScenarioBuilder.h"
-#include "Alignment/CommonAlignment/interface/Alignable.h" 
 
+#include "Alignment/CommonAlignment/interface/AlignableNavigator.h"
 
 #include "Alignment/TrackerAlignment/plugins/MisalignedTrackerESProducer.h"
 
@@ -56,8 +60,10 @@ MisalignedTrackerESProducer::produce( const TrackerDigiGeometryRecord& iRecord )
   // Create the tracker geometry from ideal geometry
   edm::ESHandle<GeometricDet> gD;
   iRecord.getRecord<IdealGeometryRecord>().get( gD );
+  edm::ESHandle<DDCompactView> cpv;
+  iRecord.getRecord<IdealGeometryRecord>().get( cpv );
   TrackerGeomBuilderFromGeometricDet trackerBuilder;
-  theTracker  = boost::shared_ptr<TrackerGeometry>( trackerBuilder.build(&(*gD)) );
+  theTracker  = boost::shared_ptr<TrackerGeometry>( trackerBuilder.build(&*cpv, &(*gD)) );
   
   // Create the alignable hierarchy
   std::auto_ptr<AlignableTracker> theAlignableTracker(new AlignableTracker( &(*theTracker) ) );

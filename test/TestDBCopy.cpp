@@ -18,19 +18,22 @@
 
 // Framework
 #include "FWCore/ServiceRegistry/interface/Service.h"
+#include "FWCore/ParameterSet/interface/ParameterSet.h"
 #include "FWCore/Framework/interface/EventSetup.h"
 #include "FWCore/Framework/interface/EDAnalyzer.h"
+#include "CondCore/DBCommon/interface/Exception.h"
 #include "FWCore/Framework/interface/MakerMacros.h"
 
 // Database
 #include "FWCore/Framework/interface/ESHandle.h"
 #include "CondCore/DBOutputService/interface/PoolDBOutputService.h"
+#include "FWCore/MessageLogger/interface/MessageLogger.h"
 
 // Alignment
 #include "CondFormats/Alignment/interface/Alignments.h"
-#include "CondFormats/AlignmentRecord/interface/TrackerAlignmentRcd.h"
+#include "CondFormats/DataRecord/interface/TrackerAlignmentRcd.h"
 #include "CondFormats/Alignment/interface/AlignmentErrors.h"
-#include "CondFormats/AlignmentRecord/interface/TrackerAlignmentErrorRcd.h"
+#include "CondFormats/DataRecord/interface/TrackerAlignmentErrorRcd.h"
 
 
 class  TestDBCopy : public edm::EDAnalyzer {
