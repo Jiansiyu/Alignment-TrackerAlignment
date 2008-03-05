@@ -71,21 +71,24 @@ void TestDBCopy::analyze( const edm::Event& evt, const edm::EventSetup& iSetup)
   if( !poolDbService.isAvailable() ) // Die if not available
 	throw cms::Exception("NotAvailable") << "PoolDBOutputService not available";
 
-  if ( poolDbService->isNewTagRequest(theAlignRecordName) )
-    poolDbService->createNewIOV<Alignments>( &(*myAlignments), poolDbService->endOfTime(), 
-                                             theAlignRecordName );
-  else
-    poolDbService->appendSinceTime<Alignments>( &(*myAlignments), poolDbService->currentTime(), 
-                                                theAlignRecordName );
-  if ( poolDbService->isNewTagRequest(theErrorRecordName) )
-    poolDbService->createNewIOV<AlignmentErrors>( &(*myAlignmentErrors),
-                                                  poolDbService->endOfTime(), 
-                                                  theErrorRecordName );
-  else
-    poolDbService->appendSinceTime<AlignmentErrors>( &(*myAlignmentErrors),
-                                                     poolDbService->currentTime(), 
-                                                     theErrorRecordName );
-
+//   if ( poolDbService->isNewTagRequest(theAlignRecordName) )
+//     poolDbService->createNewIOV<Alignments>( &(*myAlignments), poolDbService->endOfTime(), 
+//                                              theAlignRecordName );
+//   else
+//     poolDbService->appendSinceTime<Alignments>( &(*myAlignments), poolDbService->currentTime(), 
+//                                                 theAlignRecordName );
+  poolDbService->writeOne<Alignments>(&(*myAlignments), poolDbService->currentTime(),
+                                      theAlignRecordName);
+//   if ( poolDbService->isNewTagRequest(theErrorRecordName) )
+//     poolDbService->createNewIOV<AlignmentErrors>( &(*myAlignmentErrors),
+//                                                   poolDbService->endOfTime(), 
+//                                                   theErrorRecordName );
+//   else
+//     poolDbService->appendSinceTime<AlignmentErrors>( &(*myAlignmentErrors),
+//                                                      poolDbService->currentTime(), 
+//                                                      theErrorRecordName );
+  poolDbService->writeOne<AlignmentErrors>(&(*myAlignmentErrors), poolDbService->currentTime(),
+                                           theErrorRecordName);
 }
 
 //define this as a plug-in
