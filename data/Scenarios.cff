@@ -76,7 +76,8 @@ block obsoleteTrackerORCAShortTermScenario =
 	
 	// TPB
 	PSet TPBs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		double dX = 0.0010 double dY = 0.0010 double dZ = 0.0010
 		double phiZ = 0.000010
@@ -93,7 +94,8 @@ block obsoleteTrackerORCAShortTermScenario =
 	// misalignmens of TPEBlades is set to zero.
 	// This allows maximal compability with earlier version.
 	PSet TPEs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005
 		double phiZ = 0.000005
@@ -105,7 +107,8 @@ block obsoleteTrackerORCAShortTermScenario =
 	
 	// TIB
 	PSet TIBs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		double dX = 0.0105 double dY = 0.0105 double dZ = 0.0500
 		double phiZ = 0.000090
@@ -122,7 +125,8 @@ block obsoleteTrackerORCAShortTermScenario =
 	
 	// TID
 	PSet TIDs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'flat'
 		double dX = 0.04 double dY = 0.04 double dZ = 0.04
 		double phiZ = 0.000100
@@ -133,7 +137,8 @@ block obsoleteTrackerORCAShortTermScenario =
 	
 	// TOB
 	PSet TOBs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		double dX = 0.0067 double dY = 0.0067 double dZ = 0.0500
 		double phiZ = 0.000059
@@ -150,7 +155,8 @@ block obsoleteTrackerORCAShortTermScenario =
 	
 	// TEC
 	PSet TECs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		double dX = 0.0057 double dY = 0.0057 double dZ = 0.0500
 		double phiZ = 0.000046
@@ -178,7 +184,8 @@ block obsoleteTrackerShortTermScenario =
 	// TPB
 	PSet TPBs = {
 		string distribution = 'gaussian'
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		PSet Dets = { double dX = 0.0013 double dY = 0.0013 double dZ = 0.0013 }
 		PSet TPBLadders = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
 		PSet TPBLayers = {
@@ -190,7 +197,8 @@ block obsoleteTrackerShortTermScenario =
 	
 	// TPE
 	PSet TPEs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		PSet Dets = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
 		PSet TPEPanels = { double dX = 0.00018 double dY = 0.00018 double dZ = 0.00018 }
@@ -204,7 +212,8 @@ block obsoleteTrackerShortTermScenario =
 	
 	// TIB
 	PSet TIBs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		PSet Dets = {
 			string distribution = 'flat'
 			double dX = 0.02 double dY = 0.02 double dZ = 0.02
@@ -222,7 +231,8 @@ block obsoleteTrackerShortTermScenario =
 	
 	// TID
 	PSet TIDs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'flat'
 		PSet Dets = { double dX = 0.0105 double dY = 0.0105 double dZ = 0.0105 }
 		PSet TIDRings = { double dX = 0.03 double dY = 0.03 double dZ = 0.03 }
@@ -234,7 +244,8 @@ block obsoleteTrackerShortTermScenario =
 	
 	// TOB
 	PSet TOBs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		PSet Dets = {
 			string distribution = 'flat'
 			double dX = 0.01 double dY = 0.01 double dZ = 0.01
@@ -252,7 +263,8 @@ block obsoleteTrackerShortTermScenario =
 	
 	// TEC
 	PSet TECs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		PSet Dets = {
 			string distribution = 'flat'
 			double dX = 0.005 double dY = 0.005 double dZ = 0.005
@@ -282,7 +294,8 @@ block obsoleteTrackerLongTermScenario =
 
 	// TPB
 	PSet TPBs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		PSet Dets = { double dX = 0.0013 double dY = 0.0013 double dZ = 0.0013 }
 		PSet TPBLadders = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
 		PSet TPBLayers = {
@@ -293,7 +306,8 @@ block obsoleteTrackerLongTermScenario =
 	
 	// TPE
 	PSet TPEs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		PSet Dets = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
 		PSet TPEPanels = { double dX = 0.00018 double dY = 0.00018 double dZ = 0.00018 }
 		PSet TPEBlades = { double dX = 0.00018 double dY = 0.00018 double dZ = 0.00018 }
@@ -306,7 +320,8 @@ block obsoleteTrackerLongTermScenario =
 	
 	// TIB
 	PSet TIBs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		PSet Dets = { double dX = 0.002 double dY = 0.002 double dZ = 0.002 }
 		PSet TIBStrings = { double dX = 0.002 double dY = 0.002 double dZ = 0.002 }
 		PSet TIBLayers = {
@@ -317,7 +332,8 @@ block obsoleteTrackerLongTermScenario =
 	
 	// TID
 	PSet TIDs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		PSet Dets     = { double dX = 0.00105 double dY = 0.00105 double dZ = 0.00105 }
 		PSet TIDRings = { double dX = 0.003   double dY = 0.003   double dZ = 0.003 }
 		PSet TIDDisks = {
@@ -328,7 +344,8 @@ block obsoleteTrackerLongTermScenario =
 	
 	// TOB
 	PSet TOBs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		PSet Dets = { double dX = 0.001 double dY = 0.001 double dZ = 0.001 }
 		PSet TOBRods = { double dX = 0.001 double dY = 0.001 double dZ = 0.001 }
 		PSet TOBLayers = { //!\\ This should be improved: TOB layers do not make sense!
@@ -339,7 +356,8 @@ block obsoleteTrackerLongTermScenario =
 	
 	// TEC
 	PSet TECs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		PSet Dets   = { double dX = 0.0005 double dY = 0.0005 double dZ = 0.0005 }
 		PSet TECPetals = { double dX = 0.001  double dY = 0.001  double dZ = 0.001 }
 		PSet TECDisks = {
@@ -361,7 +379,8 @@ block Tracker10pbScenario =
 	
 	// TPB
 	PSet TPBs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		PSet Dets = { string distribution = 'gaussian'
 			double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0060 
 			double phiXlocal = 0.000270 double phiYlocal = 0.000270 double phiZlocal = 0.000270 }
@@ -376,7 +395,8 @@ block Tracker10pbScenario =
 	// TPE
 	// new hierarchy for TPE used
 	PSet TPEs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 
                  PSet Dets =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
@@ -397,7 +417,8 @@ block Tracker10pbScenario =
 	// TIB
 	PSet TIBs = {
 		string distribution = 'gaussian'
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		PSet Dets = { double dXlocal = 0.0180 double dYlocal = 0.0180 double dZlocal = 0.0180
 			double phiXlocal = 0.000412 double phiYlocal = 0.000412 double phiZlocal = 0.000412}
 		PSet TIBStrings = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
@@ -409,7 +430,8 @@ block Tracker10pbScenario =
 	
 	// TID
 	PSet TIDs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		PSet Dets = {     double dXlocal = 0.0054 double dYlocal = 0.0054 double dZlocal = 0.0054 
 				double phiXlocal = 0.000250 double phiYlocal = 0.000250 double phiZlocal = 0.000250}
@@ -422,7 +444,8 @@ block Tracker10pbScenario =
 	
 	// TOB
 	PSet TOBs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		PSet Dets = { double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
 				double phiXlocal = 0.000075 double phiYlocal = 0.000075 double phiZlocal = 0.000075}
@@ -436,7 +459,8 @@ block Tracker10pbScenario =
 	
 	// TEC
 	PSet TECs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		PSet Dets = {   double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
 				double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050}
@@ -458,7 +482,8 @@ block Tracker100pbScenario =
 	
 	// TPB
 	PSet TPBs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		PSet Dets = { string distribution = 'gaussian'
 			double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010 
 			double phiXlocal = 0.000045  double phiYlocal = 0.000045  double phiZlocal = 0.000045 }
@@ -473,7 +498,8 @@ block Tracker100pbScenario =
 	// TPE
 	// new hierarchy for TPE used
 	PSet TPEs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 
                  PSet Dets =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
@@ -494,7 +520,8 @@ block Tracker100pbScenario =
 	// TIB
 	PSet TIBs = {
 		string distribution = 'gaussian'
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		PSet Dets = { double dXlocal = 0.0030 double dYlocal = 0.0030 double dZlocal = 0.0030
 			double phiXlocal = 0.000070 double phiYlocal = 0.000070 double phiZlocal = 0.000070}
 		PSet TIBStrings = { double dXlocal = 0.0030 double dYlocal = 0.0030 double dZlocal = 0.0030
@@ -506,7 +533,8 @@ block Tracker100pbScenario =
 	
 	// TID
 	PSet TIDs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		PSet Dets = {     double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050 
 				double phiXlocal = 0.000230 double phiYlocal = 0.000230 double phiZlocal = 0.000230}
@@ -519,7 +547,8 @@ block Tracker100pbScenario =
 	
 	// TOB
 	PSet TOBs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		PSet Dets = { double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
 				double phiXlocal = 0.000070 double phiYlocal = 0.000070 double phiZlocal = 0.000070}
@@ -533,7 +562,8 @@ block Tracker100pbScenario =
 	
 	// TEC
 	PSet TECs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		PSet Dets = {   double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
 				double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050}
@@ -556,7 +586,8 @@ block Tracker1000pbScenario =
 	
 	// TPB
 	PSet TPBs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		PSet Dets = { string distribution = 'gaussian'
 			double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005 
 			double phiXlocal = 0.000022  double phiYlocal = 0.000022  double phiZlocal = 0.000022 }
@@ -571,7 +602,8 @@ block Tracker1000pbScenario =
 	// TPE
 	// new hierarchy for TPE used
 	PSet TPEs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 
                  PSet Dets =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
@@ -592,7 +624,8 @@ block Tracker1000pbScenario =
 	// TIB
 	PSet TIBs = {
 		string distribution = 'gaussian'
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		PSet Dets = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 			double phiXlocal = 0.000020 double phiYlocal = 0.000020 double phiZlocal = 0.000020}
 		PSet TIBStrings = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
@@ -604,7 +637,8 @@ block Tracker1000pbScenario =
 	
 	// TID
 	PSet TIDs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		PSet Dets = {     double dXlocal = 0.0025 double dYlocal = 0.0025 double dZlocal = 0.0025 
 				double phiXlocal = 0.000110 double phiYlocal = 0.000110 double phiZlocal = 0.000110}
@@ -617,7 +651,8 @@ block Tracker1000pbScenario =
 	
 	// TOB
 	PSet TOBs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		PSet Dets = { double dXlocal = 0.0018 double dYlocal = 0.0018 double dZlocal = 0.0018
 				double phiXlocal = 0.000040 double phiYlocal = 0.000040 double phiZlocal = 0.000040}
@@ -631,7 +666,8 @@ block Tracker1000pbScenario =
 	
 	// TEC
 	PSet TECs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		PSet Dets = {   double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
 				double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050}
@@ -652,7 +688,8 @@ block TrackerSurveyLASOnlyScenario =
 	
 	// TPB
 	PSet TPBs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		PSet Dets = { string distribution = 'gaussian'
 			double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0060 
 			double phiXlocal = 0.000270 double phiYlocal = 0.000270 double phiZlocal = 0.000270 }
@@ -667,7 +704,8 @@ block TrackerSurveyLASOnlyScenario =
 	// TPE
 	// new hierarchy for TPE used
 	PSet TPEs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 
                  PSet Dets =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
@@ -686,7 +724,8 @@ block TrackerSurveyLASOnlyScenario =
 	// TIB
 	PSet TIBs = {
 		string distribution = 'gaussian'
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		PSet Dets = { double dXlocal = 0.0180 double dYlocal = 0.0180 double dZlocal = 0.0180
 			double phiXlocal = 0.000412 double phiYlocal = 0.000412 double phiZlocal = 0.000412}
 		PSet TIBStrings = { double dXlocal = 0.0450 double dYlocal = 0.0450 double dZlocal = 0.0450
@@ -698,7 +737,8 @@ block TrackerSurveyLASOnlyScenario =
 	
 	// TID
 	PSet TIDs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		PSet Dets = {     double dXlocal = 0.0054 double dYlocal = 0.0054 double dZlocal = 0.0054 
 				double phiXlocal = 0.000250 double phiYlocal = 0.000250 double phiZlocal = 0.000250}
@@ -714,7 +754,8 @@ block TrackerSurveyLASOnlyScenario =
 	
 	// TOB
 	PSet TOBs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		PSet Dets = { double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
 				double phiXlocal = 0.000075 double phiYlocal = 0.000075 double phiZlocal = 0.000075}
@@ -728,7 +769,8 @@ block TrackerSurveyLASOnlyScenario =
 	
 	// TEC
 	PSet TECs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		PSet Dets = {   double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
 				double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050}
@@ -772,7 +814,8 @@ block TrackerSurveyLASCosmicsScenario =
 	
 	// TPB
 	PSet TPBs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		PSet Dets = { string distribution = 'gaussian'
 			double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0060 
 			double phiXlocal = 0.000270 double phiYlocal = 0.000270 double phiZlocal = 0.000270 }
@@ -787,7 +830,8 @@ block TrackerSurveyLASCosmicsScenario =
 	// TPE
 	// new hierarchy for TPE used
 	PSet TPEs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 
                  PSet Dets =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
@@ -806,7 +850,8 @@ block TrackerSurveyLASCosmicsScenario =
 	// TIB
 	PSet TIBs = {
 		string distribution = 'gaussian'
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		PSet Dets = { double dXlocal = 0.0180 double dYlocal = 0.0180 double dZlocal = 0.0180
 			double phiXlocal = 0.000412 double phiYlocal = 0.000412 double phiZlocal = 0.000412}
 		PSet TIBStrings = { double dXlocal = 0.0275 double dYlocal = 0.0275 double dZlocal = 0.0275
@@ -818,7 +863,8 @@ block TrackerSurveyLASCosmicsScenario =
 	
 	// TID
 	PSet TIDs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		PSet Dets = {     double dXlocal = 0.0054 double dYlocal = 0.0054 double dZlocal = 0.0054 
 				double phiXlocal = 0.000250 double phiYlocal = 0.000250 double phiZlocal = 0.000250}
@@ -834,7 +880,8 @@ block TrackerSurveyLASCosmicsScenario =
 	
 	// TOB
 	PSet TOBs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		PSet Dets = { double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
 				double phiXlocal = 0.000075 double phiYlocal = 0.000075 double phiZlocal = 0.000075}
@@ -848,7 +895,8 @@ block TrackerSurveyLASCosmicsScenario =
 	
 	// TEC
 	PSet TECs = {
-		double scale = 1.0
+		double scale      = 1.0
+		double scaleError = 1.0
 		string distribution = 'gaussian'
 		PSet Dets = {   double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
 				double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050}
