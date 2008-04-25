@@ -52,7 +52,7 @@ block TrackerExampleScenario =
 	
 	PSet TOB1 = {
 		PSet TOBLayers = { double dX = 0.1 }
-		PSet TOBLayer1 = { double dX = 0.2 }
+  		PSet TOBLayer1 = { double dX = 0.2 }
 	}
 
 }
@@ -69,6 +69,7 @@ block NoMovementsScenario =
 // -----------------------------------------------------------------------
 // Short term misalignment scenario as it is (wrongly) implemented in ORCA
 // Layer movements applied at structure level instead of layer level
+// WARNING: Not adjusted to removal of Det/DetUnit duplication!
 block obsoleteTrackerORCAShortTermScenario =
 {
 	
@@ -176,6 +177,7 @@ block obsoleteTrackerORCAShortTermScenario =
 // -----------------------------------------------------------------------
 // Short term misalignment scenario (as interpreted from AN-2005-036)
 // Layer movements applied at layer level
+// WARNING: Not adjusted to removal of Det/DetUnit duplication!
 block obsoleteTrackerShortTermScenario =
 {
 	
@@ -287,6 +289,7 @@ block obsoleteTrackerShortTermScenario =
 // -----------------------------------------------------------------------
 // Long term misalignment scenario (as interpreted from AN-2005-036)
 // Layer movements applied at layer level
+// WARNING: Not adjusted to removal of Det/DetUnit duplication!
 block obsoleteTrackerLongTermScenario =
 {
 	
@@ -367,11 +370,27 @@ block obsoleteTrackerLongTermScenario =
 	}
 
   }
-  
 
 // -----------------------------------------------------------------------
 // 10 pb-1 misalignment scenario
 // See CMS IN 2007/036
+//
+// first helper blocks for TEC:
+block TECRings10pb_1D = {
+    PSet DetUnits = {
+	double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
+	double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050
+    }
+}
+
+block TECRings10pb_2D = {
+    PSet Dets = {
+	double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
+	double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050
+    }
+    // PSet DetUnits = { add here TEC misalignment of rphi/stereo components } misalignment at DetUnit level
+}
+// now real scenario:
 block Tracker10pbScenario =
 {
 	
@@ -381,7 +400,7 @@ block Tracker10pbScenario =
 	PSet TPBs = {
 		double scale      = 1.0
 		double scaleError = 1.0
-		PSet Dets = { string distribution = 'gaussian'
+		PSet DetUnits = { string distribution = 'gaussian'
 			double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0060 
 			double phiXlocal = 0.000270 double phiYlocal = 0.000270 double phiZlocal = 0.000270 }
 		PSet TPBLadders = { string distribution = 'gaussian'
@@ -399,7 +418,7 @@ block Tracker10pbScenario =
 		double scaleError = 1.0
 		string distribution = 'gaussian'
 
-                 PSet Dets =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet DetUnits =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000100 double phiYlocal = 0.000100 double phiZlocal = 0.000100}
                  PSet TPEPanels =     { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000200 double phiYlocal = 0.000200 double phiZlocal = 0.000200}
@@ -419,13 +438,26 @@ block Tracker10pbScenario =
 		string distribution = 'gaussian'
 		double scale      = 1.0
 		double scaleError = 1.0
-		PSet Dets = { double dXlocal = 0.0180 double dYlocal = 0.0180 double dZlocal = 0.0180
-			double phiXlocal = 0.000412 double phiYlocal = 0.000412 double phiZlocal = 0.000412}
 		PSet TIBStrings = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
 			double phiXlocal = 0.000065 double phiYlocal = 0.000065 double phiZlocal = 0.000065}
 		PSet TIBLayers = {
 			double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
 			double phiXlocal = 0.000065 double phiYlocal = 0.000065 double phiZlocal = 0.000065}
+	        // DS Layers 1 & 2 have Dets and DetUnits - the latter ones not yet misaligned
+	        PSet TIBLayer1_2 = {
+                        PSet Dets = {
+		                double dXlocal = 0.0180 double dYlocal = 0.0180 double dZlocal = 0.0180
+			        double phiXlocal = 0.000412 double phiYlocal = 0.000412 double phiZlocal = 0.000412
+	                }
+	                // PSet DetUnits = {add here misalignment of components of Dets}
+     	        }
+	        // SS Layers 3 & 4 have only DetUnits
+	        PSet TIBLayer3_4 = {
+                        PSet DetUnits = { 
+		                double dXlocal = 0.0180 double dYlocal = 0.0180 double dZlocal = 0.0180
+			        double phiXlocal = 0.000412 double phiYlocal = 0.000412 double phiZlocal = 0.000412
+	                 }
+	        }
 	}
 	
 	// TID
@@ -433,10 +465,23 @@ block Tracker10pbScenario =
 		double scale      = 1.0
 		double scaleError = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {     double dXlocal = 0.0054 double dYlocal = 0.0054 double dZlocal = 0.0054 
-				double phiXlocal = 0.000250 double phiYlocal = 0.000250 double phiZlocal = 0.000250}
 		PSet TIDRings = { double dXlocal = 0.0185 double dYlocal = 0.0185 double dZlocal = 0.0185
 				double phiXlocal = 0.000850 double phiYlocal = 0.000850 double phiZlocal = 0.000850}
+	        // DS Rings 1 & 2 have Dets and DetUnits - the latter ones not yet misaligned
+	        PSet TIDRing1_2 = {
+	                PSet Dets = {
+                                double dXlocal = 0.0054 double dYlocal = 0.0054 double dZlocal = 0.0054 
+				double phiXlocal = 0.000250 double phiYlocal = 0.000250 double phiZlocal = 0.000250
+	                }
+	                // PSet DetUnits = {add here misalignment of components of Dets}
+                }
+	        // SS Ring 3 has only DetUnits
+	        PSet TIDRing3 = {
+	                PSet DetUnits = {
+		                double dXlocal = 0.0054 double dYlocal = 0.0054 double dZlocal = 0.0054 
+				double phiXlocal = 0.000250 double phiYlocal = 0.000250 double phiZlocal = 0.000250
+	                }
+                }
 		PSet TIDDisks = {
 			double dXlocal = 0.0250 double dYlocal = 0.0250 double dZlocal = 0.0250
 				double phiXlocal = 0.000380 double phiYlocal = 0.000380 double phiZlocal = 0.000380}
@@ -447,12 +492,25 @@ block Tracker10pbScenario =
 		double scale      = 1.0
 		double scaleError = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = { double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
-				double phiXlocal = 0.000075 double phiYlocal = 0.000075 double phiZlocal = 0.000075}
 		PSet TOBRods = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
 				double phiXlocal = 0.000040 double phiYlocal = 0.000040 double phiZlocal = 0.000040}
 		PSet TOBLayers = { // Not used since TOB layers do not make sense!
 			double dXlocal = 0.0000 double dYlocal = 0.0000 double dZlocal = 0.0000 }
+	        // DS Layers 1 & 2 have Dets and DetUnits - the latter ones not yet misaligned
+		PSet TOBLayer1_2 = {
+		        PSet Dets = {
+		                double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
+				double phiXlocal = 0.000075 double phiYlocal = 0.000075 double phiZlocal = 0.000075
+                        }
+	                // PSet DetUnits = {add here misalignment of components of Dets}
+	        }
+	        // SS Layers 3 - 6 have only DetUnits
+		PSet TOBLayer3_4_5_6 = {
+		        PSet DetUnits = {
+		                double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
+				double phiXlocal = 0.000075 double phiYlocal = 0.000075 double phiZlocal = 0.000075
+                        }
+	        }
 		PSet TOBHalfBarrels = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0100 
 				double phiXlocal = 0.000010 double phiYlocal = 0.000010 double phiZlocal = 0.000010}
 	}
@@ -462,12 +520,27 @@ block Tracker10pbScenario =
 		double scale      = 1.0
 		double scaleError = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {   double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
-				double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050}
 		PSet TECPetals = {	double dXlocal = 0.0070 double dYlocal = 0.0070 double dZlocal = 0.0070 
 				double phiXlocal = 0.000030 double phiYlocal = 0.000030 double phiZlocal = 0.000030}
 		PSet TECDisks = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0150
 				double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
+	        // 1D and 2D Dets in TEC are a bit complicated:
+	        PSet TECDisk1_2_3 = { // all 7 rings present, DS Rings are 1, 2 & 5
+	                PSet TECRing1_2_5   = {using TECRings10pb_2D}
+	                PSet TECRing3_4_6_7 = {using TECRings10pb_1D}
+	        }
+	        PSet TECDisk4_5_6 = { // rings 2-7 present (here called 1-6), DS Rings are 1 & 4
+	                PSet TECRing1_4     = {using TECRings10pb_2D}
+	                PSet TECRing2_3_5_6 = {using TECRings10pb_1D}
+	        }
+	        PSet TECDisk7_8 = { // rings 3-7 present (here called 1-5), DS Ring is 3
+	                PSet TECRing3       = {using TECRings10pb_2D}
+	                PSet TECRing1_2_4_5 = {using TECRings10pb_1D}
+	        }
+	        PSet TECDisk9 = { // rings 4-7 present (here called 1-4), DS Ring is 2
+	                PSet TECRing2       = {using TECRings10pb_2D}
+	                PSet TECRing1_3_4   = {using TECRings10pb_1D}
+	       }
 	}
 
 
@@ -475,6 +548,22 @@ block Tracker10pbScenario =
 
 // 100 pb-1 misalignment scenario
 // See CMS IN 2007/036
+// first helper blocks for TEC:
+block TECRings100pb_1D = {
+    PSet DetUnits = {
+	double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
+	double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050
+    }
+}
+
+block TECRings100pb_2D = {
+    PSet Dets = {
+	double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
+	double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050
+    }
+    // PSet DetUnits = { add here TEC misalignment of rphi/stereo components } misalignment at DetUnit level
+}
+// now real scenario:
 block Tracker100pbScenario =
 {
 	
@@ -484,7 +573,7 @@ block Tracker100pbScenario =
 	PSet TPBs = {
 		double scale      = 1.0
 		double scaleError = 1.0
-		PSet Dets = { string distribution = 'gaussian'
+		PSet DetUnits = { string distribution = 'gaussian'
 			double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010 
 			double phiXlocal = 0.000045  double phiYlocal = 0.000045  double phiZlocal = 0.000045 }
 		PSet TPBLadders = { string distribution = 'gaussian'
@@ -502,7 +591,7 @@ block Tracker100pbScenario =
 		double scaleError = 1.0
 		string distribution = 'gaussian'
 
-                 PSet Dets =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet DetUnits =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000011 double phiYlocal = 0.000011 double phiZlocal = 0.000011}
                  PSet TPEPanels =     { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000022 double phiYlocal = 0.000022 double phiZlocal = 0.000022}
@@ -522,13 +611,26 @@ block Tracker100pbScenario =
 		string distribution = 'gaussian'
 		double scale      = 1.0
 		double scaleError = 1.0
-		PSet Dets = { double dXlocal = 0.0030 double dYlocal = 0.0030 double dZlocal = 0.0030
-			double phiXlocal = 0.000070 double phiYlocal = 0.000070 double phiZlocal = 0.000070}
 		PSet TIBStrings = { double dXlocal = 0.0030 double dYlocal = 0.0030 double dZlocal = 0.0030
 			double phiXlocal = 0.000020 double phiYlocal = 0.000020 double phiZlocal = 0.000020}
 		PSet TIBLayers = {
 			double dXlocal = 0.0015 double dYlocal = 0.0015 double dZlocal = 0.0015
 			double phiXlocal = 0.000010 double phiYlocal = 0.000010 double phiZlocal = 0.000010}
+	        // DS Layers 1 & 2 have Dets and DetUnits - the latter ones not yet misaligned
+	        PSet TIBLayer1_2 = {
+		        PSet Dets = {
+		                double dXlocal = 0.0030 double dYlocal = 0.0030 double dZlocal = 0.0030
+			        double phiXlocal = 0.000070 double phiYlocal = 0.000070 double phiZlocal = 0.000070
+	                // PSet DetUnits = {add here misalignment of components of Dets}
+	                }
+	        }
+	        // SS Layers 3 & 4 have only DetUnits
+	        PSet TIBLayer3_4 = {
+		        PSet DetUnits = {
+		                double dXlocal = 0.0030 double dYlocal = 0.0030 double dZlocal = 0.0030
+			        double phiXlocal = 0.000070 double phiYlocal = 0.000070 double phiZlocal = 0.000070
+	                }
+	        }
 	}
 	
 	// TID
@@ -536,13 +638,26 @@ block Tracker100pbScenario =
 		double scale      = 1.0
 		double scaleError = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {     double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050 
-				double phiXlocal = 0.000230 double phiYlocal = 0.000230 double phiZlocal = 0.000230}
 		PSet TIDRings = { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
 				double phiXlocal = 0.000230 double phiYlocal = 0.000230 double phiZlocal = 0.000230}
 		PSet TIDDisks = {
 			double dXlocal = 0.0025 double dYlocal = 0.0025 double dZlocal = 0.0025
 				double phiXlocal = 0.000040 double phiYlocal = 0.000040 double phiZlocal = 0.000040}
+	        // DS Rings 1 & 2 have Dets and DetUnits - the latter ones not yet misaligned
+	        PSet TIDRing1_2 = {
+	                PSet Dets = {
+		                double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050 
+				double phiXlocal = 0.000230 double phiYlocal = 0.000230 double phiZlocal = 0.000230
+	                }
+	                // PSet DetUnits = {add here misalignment of components of Dets}
+                }
+	        // SS Ring 3 has only DetUnits
+	        PSet TIDRing3 = {
+	                PSet DetUnits = {
+		                double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050 
+				double phiXlocal = 0.000230 double phiYlocal = 0.000230 double phiZlocal = 0.000230
+	                }
+                }
 	}
 	
 	// TOB
@@ -550,12 +665,25 @@ block Tracker100pbScenario =
 		double scale      = 1.0
 		double scaleError = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = { double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
-				double phiXlocal = 0.000070 double phiYlocal = 0.000070 double phiZlocal = 0.000070}
 		PSet TOBRods = { double dXlocal = 0.0040 double dYlocal = 0.0040 double dZlocal = 0.0040
 				double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
 		PSet TOBLayers = { // Not used since TOB layers do not make sense!
 			double dXlocal = 0.0000 double dYlocal = 0.0000 double dZlocal = 0.0000 }
+	        // DS Layers 1 & 2 have Dets and DetUnits - the latter ones not yet misaligned
+		PSet TOBLayer1_2 = {
+		        PSet Dets = {
+		                double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
+				double phiXlocal = 0.000070 double phiYlocal = 0.000070 double phiZlocal = 0.000070
+                     }
+	                // PSet DetUnits = {add here misalignment of components of Dets}
+	        }
+	        // SS Layers 3 - 6 have only DetUnits
+		PSet TOBLayer3_4_5_6 = {
+		        PSet DetUnits = {
+		                double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
+				double phiXlocal = 0.000070 double phiYlocal = 0.000070 double phiZlocal = 0.000070
+                        }
+	        }
 		PSet TOBHalfBarrels = { double dXlocal = 0.0020 double dYlocal = 0.0020 double dZlocal = 0.0020 
 				double phiXlocal = 0.000005 double phiYlocal = 0.000005 double phiZlocal = 0.000005}
 	}
@@ -565,12 +693,27 @@ block Tracker100pbScenario =
 		double scale      = 1.0
 		double scaleError = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {   double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
-				double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050}
 		PSet TECPetals = {	double dXlocal = 0.0055 double dYlocal = 0.0055 double dZlocal = 0.0055 
 				double phiXlocal = 0.000020 double phiYlocal = 0.000020 double phiZlocal = 0.000020}
 		PSet TECDisks = { double dXlocal = 0.0030 double dYlocal = 0.0030 double dZlocal = 0.0030
 				double phiXlocal = 0.000005 double phiYlocal = 0.000005 double phiZlocal = 0.000005}
+	        // 1D and 2D Dets in TEC are a bit complicated:
+	        PSet TECDisk1_2_3 = { // all 7 rings present, DS Rings are 1, 2 & 5
+	                PSet TECRing1_2_5   = {using TECRings100pb_2D}
+	                PSet TECRing3_4_6_7 = {using TECRings100pb_1D}
+	        }
+	        PSet TECDisk4_5_6 = { // rings 2-7 present (here called 1-6), DS Rings are 1 & 4
+	                PSet TECRing1_4     = {using TECRings100pb_2D}
+	                PSet TECRing2_3_5_6 = {using TECRings100pb_1D}
+	        }
+	        PSet TECDisk7_8 = { // rings 3-7 present (here called 1-5), DS Ring is 3
+	                PSet TECRing3       = {using TECRings100pb_2D}
+	                PSet TECRing1_2_4_5 = {using TECRings100pb_1D}
+	        }
+	        PSet TECDisk9 = { // rings 4-7 present (here called 1-4), DS Ring is 2
+	                PSet TECRing2       = {using TECRings100pb_2D}
+	                PSet TECRing1_3_4   = {using TECRings100pb_1D}
+	       }
 	}
 
 
@@ -579,6 +722,22 @@ block Tracker100pbScenario =
 // -----------------------------------------------------------------------
 // 1000 pb-1 misalignment scenario
 // See CMS IN 2007/036
+// first helper blocks for TEC:
+block TECRings1000pb_1D = {
+    PSet DetUnits = {
+	    double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
+	    double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050
+    }
+}
+
+block TECRings1000pb_2D = {
+    PSet Dets = {
+	    double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
+	    double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050
+    }
+    // PSet DetUnits = { add here TEC misalignment of rphi/stereo components } misalignment at DetUnit level
+}
+// now real scenario:
 block Tracker1000pbScenario =
 {
 	
@@ -588,7 +747,7 @@ block Tracker1000pbScenario =
 	PSet TPBs = {
 		double scale      = 1.0
 		double scaleError = 1.0
-		PSet Dets = { string distribution = 'gaussian'
+		PSet DetUnits = { string distribution = 'gaussian'
 			double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005 
 			double phiXlocal = 0.000022  double phiYlocal = 0.000022  double phiZlocal = 0.000022 }
 		PSet TPBLadders = { string distribution = 'gaussian'
@@ -606,7 +765,7 @@ block Tracker1000pbScenario =
 		double scaleError = 1.0
 		string distribution = 'gaussian'
 
-                 PSet Dets =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet DetUnits =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000011 double phiYlocal = 0.000011 double phiZlocal = 0.000011}
                  PSet TPEPanels =     { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000011 double phiYlocal = 0.000011 double phiZlocal = 0.000011}
@@ -626,13 +785,26 @@ block Tracker1000pbScenario =
 		string distribution = 'gaussian'
 		double scale      = 1.0
 		double scaleError = 1.0
-		PSet Dets = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
-			double phiXlocal = 0.000020 double phiYlocal = 0.000020 double phiZlocal = 0.000020}
 		PSet TIBStrings = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 			double phiXlocal = 0.000005 double phiYlocal = 0.000005 double phiZlocal = 0.000005}
 		PSet TIBLayers = {
 			double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 			double phiXlocal = 0.000005 double phiYlocal = 0.000005 double phiZlocal = 0.000005}
+	        // DS Layers 1 & 2 have Dets and DetUnits - the latter ones not yet misaligned
+	        PSet TIBLayer1_2 = {
+		        PSet Dets = {
+		               double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
+		               double phiXlocal = 0.000020 double phiYlocal = 0.000020 double phiZlocal = 0.000020
+	                // PSet DetUnits = {add here misalignment of components of Dets}
+	                }
+	        }
+	        // SS Layers 3 & 4 have only DetUnits
+	        PSet TIBLayer3_4 = {
+		        PSet DetUnits = {
+		               double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
+		               double phiXlocal = 0.000020 double phiYlocal = 0.000020 double phiZlocal = 0.000020
+	                }
+	        }
 	}
 	
 	// TID
@@ -640,13 +812,26 @@ block Tracker1000pbScenario =
 		double scale      = 1.0
 		double scaleError = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {     double dXlocal = 0.0025 double dYlocal = 0.0025 double dZlocal = 0.0025 
-				double phiXlocal = 0.000110 double phiYlocal = 0.000110 double phiZlocal = 0.000110}
 		PSet TIDRings = { double dXlocal = 0.0025 double dYlocal = 0.0025 double dZlocal = 0.0025
 				double phiXlocal = 0.000110 double phiYlocal = 0.000110 double phiZlocal = 0.000110}
 		PSet TIDDisks = {
 			double dXlocal = 0.0012 double dYlocal = 0.0012 double dZlocal = 0.0012
 				double phiXlocal = 0.000020 double phiYlocal = 0.000020 double phiZlocal = 0.000020}
+	        // DS Rings 1 & 2 have Dets and DetUnits - the latter ones not yet misaligned
+	        PSet TIDRing1_2 = {
+	                PSet Dets = {
+		                double dXlocal = 0.0025 double dYlocal = 0.0025 double dZlocal = 0.0025 
+				double phiXlocal = 0.000110 double phiYlocal = 0.000110 double phiZlocal = 0.000110
+	                }
+	                // PSet DetUnits = {add here misalignment of components of Dets}
+                }
+	        // SS Ring 3 has only DetUnits
+	        PSet TIDRing3 = {
+	                PSet DetUnits = {
+		                double dXlocal = 0.0025 double dYlocal = 0.0025 double dZlocal = 0.0025 
+				double phiXlocal = 0.000110 double phiYlocal = 0.000110 double phiZlocal = 0.000110
+	                }
+                }
 	}
 	
 	// TOB
@@ -654,14 +839,27 @@ block Tracker1000pbScenario =
 		double scale      = 1.0
 		double scaleError = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = { double dXlocal = 0.0018 double dYlocal = 0.0018 double dZlocal = 0.0018
-				double phiXlocal = 0.000040 double phiYlocal = 0.000040 double phiZlocal = 0.000040}
 		PSet TOBRods = { double dXlocal = 0.0018 double dYlocal = 0.0018 double dZlocal = 0.0018
 				double phiXlocal = 0.000007 double phiYlocal = 0.000007 double phiZlocal = 0.000007}
 		PSet TOBLayers = { // Not used since TOB layers do not make sense!
 			double dXlocal = 0.0000 double dYlocal = 0.0000 double dZlocal = 0.0000 }
 		PSet TOBHalfBarrels = { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010 
 				double phiXlocal = 0.000002 double phiYlocal = 0.000002 double phiZlocal = 0.000002}
+	        // DS Layers 1 & 2 have Dets and DetUnits - the latter ones not yet misaligned
+		PSet TOBLayer1_2 = {
+		        PSet Dets = {
+   		                double dXlocal = 0.0018 double dYlocal = 0.0018 double dZlocal = 0.0018
+				double phiXlocal = 0.000040 double phiYlocal = 0.000040 double phiZlocal = 0.000040
+	                }
+	                // PSet DetUnits = {add here misalignment of components of Dets}
+	        }
+	        // SS Layers 3 - 6 have only DetUnits
+		PSet TOBLayer3_4_5_6 = {
+		        PSet DetUnits = {
+   		                double dXlocal = 0.0018 double dYlocal = 0.0018 double dZlocal = 0.0018
+				double phiXlocal = 0.000040 double phiYlocal = 0.000040 double phiZlocal = 0.000040
+                        }
+	        }
 	}
 	
 	// TEC
@@ -669,18 +867,49 @@ block Tracker1000pbScenario =
 		double scale      = 1.0
 		double scaleError = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {   double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
-				double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050}
 		PSet TECPetals = {	double dXlocal = 0.0040 double dYlocal = 0.0040 double dZlocal = 0.0040 
 				double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
 		PSet TECDisks = { double dXlocal = 0.0020 double dYlocal = 0.0020 double dZlocal = 0.0020
 				double phiXlocal = 0.000005 double phiYlocal = 0.000005 double phiZlocal = 0.000005}
+	        // 1D and 2D Dets in TEC are a bit complicated:
+	        PSet TECDisk1_2_3 = { // all 7 rings present, DS Rings are 1, 2 & 5
+	                PSet TECRing1_2_5   = {using TECRings1000pb_2D}
+	                PSet TECRing3_4_6_7 = {using TECRings1000pb_1D}
+	        }
+	        PSet TECDisk4_5_6 = { // rings 2-7 present (here called 1-6), DS Rings are 1 & 4
+	                PSet TECRing1_4     = {using TECRings1000pb_2D}
+	                PSet TECRing2_3_5_6 = {using TECRings1000pb_1D}
+	        }
+	        PSet TECDisk7_8 = { // rings 3-7 present (here called 1-5), DS Ring is 3
+	                PSet TECRing3       = {using TECRings1000pb_2D}
+	                PSet TECRing1_2_4_5 = {using TECRings1000pb_1D}
+	        }
+	        PSet TECDisk9 = { // rings 4-7 present (here called 1-4), DS Ring is 2
+	                PSet TECRing2       = {using TECRings1000pb_2D}
+	                PSet TECRing1_3_4   = {using TECRings1000pb_1D}
+	       }
 	}
 }
 
 // -----------------------------------------------------------------------
 // Survey&LAS only misalignment scenario
 // See CMS IN 2007/036, table 6, "Updated initial uncertainties"
+// first helper blocks for TEC:
+block TECRingsSurveyLASOnly_1D = {
+    PSet DetUnits = {
+	     double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
+	     double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050
+    }
+}
+
+block TECRingsSurveyLASOnly_2D = {
+    PSet Dets = {
+	     double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
+	     double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050
+    }
+    // PSet DetUnits = { add here TEC misalignment of rphi/stereo components } misalignment at DetUnit level
+}
+// now real scenario:
 block TrackerSurveyLASOnlyScenario =
 {
 	
@@ -690,7 +919,7 @@ block TrackerSurveyLASOnlyScenario =
 	PSet TPBs = {
 		double scale      = 1.0
 		double scaleError = 1.0
-		PSet Dets = { string distribution = 'gaussian'
+		PSet DetUnits = { string distribution = 'gaussian'
 			double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0060 
 			double phiXlocal = 0.000270 double phiYlocal = 0.000270 double phiZlocal = 0.000270 }
 		PSet TPBLadders = { string distribution = 'flat'
@@ -708,7 +937,7 @@ block TrackerSurveyLASOnlyScenario =
 		double scaleError = 1.0
 		string distribution = 'gaussian'
 
-                 PSet Dets =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet DetUnits =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000100 double phiYlocal = 0.000100 double phiZlocal = 0.000100}
                  PSet TPEPanels =     { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000200 double phiYlocal = 0.000200 double phiZlocal = 0.000200}
@@ -726,13 +955,26 @@ block TrackerSurveyLASOnlyScenario =
 		string distribution = 'gaussian'
 		double scale      = 1.0
 		double scaleError = 1.0
-		PSet Dets = { double dXlocal = 0.0180 double dYlocal = 0.0180 double dZlocal = 0.0180
-			double phiXlocal = 0.000412 double phiYlocal = 0.000412 double phiZlocal = 0.000412}
 		PSet TIBStrings = { double dXlocal = 0.0450 double dYlocal = 0.0450 double dZlocal = 0.0450
 			double phiXlocal = 0.000293 double phiYlocal = 0.000293 double phiZlocal = 0.000293}
 		PSet TIBLayers = {
 			double dXlocal = 0.0750 double dYlocal = 0.0750 double dZlocal = 0.0750
 			double phiXlocal = 0.000488 double phiYlocal = 0.000488 double phiZlocal = 0.000488}
+	        // DS Layers 1 & 2 have Dets and DetUnits - the latter ones not yet misaligned
+	        PSet TIBLayer1_2 = {
+		        PSet Dets = {
+		                double dXlocal = 0.0180 double dYlocal = 0.0180 double dZlocal = 0.0180
+		                double phiXlocal = 0.000412 double phiYlocal = 0.000412 double phiZlocal = 0.000412
+	                // PSet DetUnits = {add here misalignment of components of Dets}
+	                }
+	        }
+	        // SS Layers 3 & 4 have only DetUnits
+	        PSet TIBLayer3_4 = {
+		        PSet DetUnits = {
+		                double dXlocal = 0.0180 double dYlocal = 0.0180 double dZlocal = 0.0180
+		                double phiXlocal = 0.000412 double phiYlocal = 0.000412 double phiZlocal = 0.000412
+	                }
+	        }
 	}
 	
 	// TID
@@ -740,8 +982,6 @@ block TrackerSurveyLASOnlyScenario =
 		double scale      = 1.0
 		double scaleError = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {     double dXlocal = 0.0054 double dYlocal = 0.0054 double dZlocal = 0.0054 
-				double phiXlocal = 0.000250 double phiYlocal = 0.000250 double phiZlocal = 0.000250}
 		PSet TIDRings = { double dXlocal = 0.0185 double dYlocal = 0.0185 double dZlocal = 0.0185
 				double phiXlocal = 0.000850 double phiYlocal = 0.000850 double phiZlocal = 0.000850}
 		PSet TIDDisks = {
@@ -750,6 +990,21 @@ block TrackerSurveyLASOnlyScenario =
 		PSet TIDEndcaps = {
 			double dXlocal = 0.0450 double dYlocal = 0.0450 double dZlocal = 0.0450
 				double phiXlocal = 0.000649 double phiYlocal = 0.000649 double phiZlocal = 0.000649}
+	        // DS Rings 1 & 2 have Dets and DetUnits - the latter ones not yet misaligned
+	        PSet TIDRing1_2 = {
+	                PSet Dets = {
+		                double dXlocal = 0.0054 double dYlocal = 0.0054 double dZlocal = 0.0054 
+		                double phiXlocal = 0.000250 double phiYlocal = 0.000250 double phiZlocal = 0.000250
+	                }
+	                // PSet DetUnits = {add here misalignment of components of Dets}
+                }
+	        // SS Ring 3 has only DetUnits
+	        PSet TIDRing3 = {
+	                PSet DetUnits = {
+		                double dXlocal = 0.0054 double dYlocal = 0.0054 double dZlocal = 0.0054 
+		                double phiXlocal = 0.000250 double phiYlocal = 0.000250 double phiZlocal = 0.000250
+	                }
+                }
 	}
 	
 	// TOB
@@ -757,14 +1012,27 @@ block TrackerSurveyLASOnlyScenario =
 		double scale      = 1.0
 		double scaleError = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = { double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
-				double phiXlocal = 0.000075 double phiYlocal = 0.000075 double phiZlocal = 0.000075}
 		PSet TOBRods = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
 				double phiXlocal = 0.000040 double phiYlocal = 0.000040 double phiZlocal = 0.000040}
 		PSet TOBLayers = { // Not used since TOB layers do not make sense!
 			double dXlocal = 0.0000 double dYlocal = 0.0000 double dZlocal = 0.0000 }
 		PSet TOBHalfBarrels = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0500 
 				double phiXlocal = 0.000010 double phiYlocal = 0.000010 double phiZlocal = 0.000010}
+	        // DS Layers 1 & 2 have Dets and DetUnits - the latter ones not yet misaligned
+		PSet TOBLayer1_2 = {
+		        PSet Dets = {
+		                double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
+		                double phiXlocal = 0.000075 double phiYlocal = 0.000075 double phiZlocal = 0.000075
+	                }
+	                // PSet DetUnits = {add here misalignment of components of Dets}
+	        }
+	        // SS Layers 3 - 6 have only DetUnits
+		PSet TOBLayer3_4_5_6 = {
+		        PSet DetUnits = {
+		                double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
+		                double phiXlocal = 0.000075 double phiYlocal = 0.000075 double phiZlocal = 0.000075
+                        }
+	        }
 	}
 	
 	// TEC
@@ -772,20 +1040,33 @@ block TrackerSurveyLASOnlyScenario =
 		double scale      = 1.0
 		double scaleError = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {   double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
-				double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050}
 		PSet TECPetals = {	double dXlocal = 0.0070 double dYlocal = 0.0070 double dZlocal = 0.0070 
 				double phiXlocal = 0.000030 double phiYlocal = 0.000030 double phiZlocal = 0.000030}
 		PSet TECDisks = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0150
 				double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
+	        // 1D and 2D Dets in TEC are a bit complicated:
+	        PSet TECDisk1_2_3 = { // all 7 rings present, DS Rings are 1, 2 & 5
+	                PSet TECRing1_2_5   = {using TECRingsSurveyLASOnly_2D}
+	                PSet TECRing3_4_6_7 = {using TECRingsSurveyLASOnly_1D}
+	        }
+	        PSet TECDisk4_5_6 = { // rings 2-7 present (here called 1-6), DS Rings are 1 & 4
+	                PSet TECRing1_4     = {using TECRingsSurveyLASOnly_2D}
+	                PSet TECRing2_3_5_6 = {using TECRingsSurveyLASOnly_1D}
+	        }
+	        PSet TECDisk7_8 = { // rings 3-7 present (here called 1-5), DS Ring is 3
+	                PSet TECRing3       = {using TECRingsSurveyLASOnly_2D}
+	                PSet TECRing1_2_4_5 = {using TECRingsSurveyLASOnly_1D}
+	        }
+	        PSet TECDisk9 = { // rings 4-7 present (here called 1-4), DS Ring is 2
+	                PSet TECRing2       = {using TECRingsSurveyLASOnly_2D}
+	                PSet TECRing1_3_4   = {using TECRingsSurveyLASOnly_1D}
+	       }
 	}
-
 
 }
 
 // -----------------------------------------------------------------------
-block TrackerSurveyLASCosmicsScenario =
-{
+// Survey&LAS&Cosmics scenario
 // ----------------------------------------
 // ----------------- NOTE -----------------
 // Sufficient studies do not yet exist to
@@ -809,6 +1090,25 @@ block TrackerSurveyLASCosmicsScenario =
 // extent, to the 10pb-1 scenario.
 // ------------- NOTE ends ----------------
 // ----------------------------------------
+// first helper blocks for TEC:
+block TECRingsSurveyLASCosmics_1D = {
+    PSet DetUnits = {
+            double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
+            double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050
+    }
+}
+
+block TECRingsSurveyLASCosmics_2D = {
+    PSet Dets = {
+            double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
+            double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050
+    }
+    // PSet DetUnits = { add here TEC misalignment of rphi/stereo components } misalignment at DetUnit level
+}
+// now real scenario:
+
+block TrackerSurveyLASCosmicsScenario =
+{
 	
 	using MisalignmentScenarioSettings
 	
@@ -816,7 +1116,7 @@ block TrackerSurveyLASCosmicsScenario =
 	PSet TPBs = {
 		double scale      = 1.0
 		double scaleError = 1.0
-		PSet Dets = { string distribution = 'gaussian'
+		PSet DetUnits = { string distribution = 'gaussian'
 			double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0060 
 			double phiXlocal = 0.000270 double phiYlocal = 0.000270 double phiZlocal = 0.000270 }
 		PSet TPBLadders = { string distribution = 'gaussian'
@@ -834,7 +1134,7 @@ block TrackerSurveyLASCosmicsScenario =
 		double scaleError = 1.0
 		string distribution = 'gaussian'
 
-                 PSet Dets =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
+                 PSet DetUnits =   { double dXlocal = 0.0005 double dYlocal = 0.0005 double dZlocal = 0.0005
 		double phiXlocal = 0.000100 double phiYlocal = 0.000100 double phiZlocal = 0.000100}
                  PSet TPEPanels =     { double dXlocal = 0.0010 double dYlocal = 0.0010 double dZlocal = 0.0010
 		double phiXlocal = 0.000200 double phiYlocal = 0.000200 double phiZlocal = 0.000200}
@@ -852,13 +1152,26 @@ block TrackerSurveyLASCosmicsScenario =
 		string distribution = 'gaussian'
 		double scale      = 1.0
 		double scaleError = 1.0
-		PSet Dets = { double dXlocal = 0.0180 double dYlocal = 0.0180 double dZlocal = 0.0180
-			double phiXlocal = 0.000412 double phiYlocal = 0.000412 double phiZlocal = 0.000412}
 		PSet TIBStrings = { double dXlocal = 0.0275 double dYlocal = 0.0275 double dZlocal = 0.0275
 			double phiXlocal = 0.000179 double phiYlocal = 0.000179 double phiZlocal = 0.000179}
 		PSet TIBLayers = { 
 			double dXlocal = 0.0425 double dYlocal = 0.0425 double dZlocal = 0.0425
 			double phiXlocal = 0.000277 double phiYlocal = 0.000277 double phiZlocal = 0.000277}
+	        // DS Layers 1 & 2 have Dets and DetUnits - the latter ones not yet misaligned
+	        PSet TIBLayer1_2 = {
+		        PSet Dets = {
+	                     double dXlocal = 0.0180 double dYlocal = 0.0180 double dZlocal = 0.0180
+	                     double phiXlocal = 0.000412 double phiYlocal = 0.000412 double phiZlocal = 0.000412
+	                // PSet DetUnits = {add here misalignment of components of Dets}
+	                }
+	        }
+	        // SS Layers 3 & 4 have only DetUnits
+	        PSet TIBLayer3_4 = {
+		        PSet DetUnits = {
+	                     double dXlocal = 0.0180 double dYlocal = 0.0180 double dZlocal = 0.0180
+	                     double phiXlocal = 0.000412 double phiYlocal = 0.000412 double phiZlocal = 0.000412
+	                }
+	        }
 	}
 	
 	// TID
@@ -866,8 +1179,6 @@ block TrackerSurveyLASCosmicsScenario =
 		double scale      = 1.0
 		double scaleError = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {     double dXlocal = 0.0054 double dYlocal = 0.0054 double dZlocal = 0.0054 
-				double phiXlocal = 0.000250 double phiYlocal = 0.000250 double phiZlocal = 0.000250}
 		PSet TIDRings = { double dXlocal = 0.0185 double dYlocal = 0.0185 double dZlocal = 0.0185
 				double phiXlocal = 0.000850 double phiYlocal = 0.000850 double phiZlocal = 0.000850}
 		PSet TIDDisks = {
@@ -876,6 +1187,21 @@ block TrackerSurveyLASCosmicsScenario =
 		PSet TIDEndcaps = {
 			double dXlocal = 0.0225 double dYlocal = 0.0225 double dZlocal = 0.0225
 				double phiXlocal = 0.000325 double phiYlocal = 0.000325 double phiZlocal = 0.000325}
+	        // DS Rings 1 & 2 have Dets and DetUnits - the latter ones not yet misaligned
+	        PSet TIDRing1_2 = {
+	                PSet Dets = {
+                                double dXlocal = 0.0054 double dYlocal = 0.0054 double dZlocal = 0.0054 
+                                double phiXlocal = 0.000250 double phiYlocal = 0.000250 double phiZlocal = 0.000250
+	                }
+	                // PSet DetUnits = {add here misalignment of components of Dets}
+                }
+	        // SS Ring 3 has only DetUnits
+	        PSet TIDRing3 = {
+	                PSet DetUnits = {
+                                double dXlocal = 0.0054 double dYlocal = 0.0054 double dZlocal = 0.0054 
+                                double phiXlocal = 0.000250 double phiYlocal = 0.000250 double phiZlocal = 0.000250
+	                }
+                }
 	}
 	
 	// TOB
@@ -883,14 +1209,27 @@ block TrackerSurveyLASCosmicsScenario =
 		double scale      = 1.0
 		double scaleError = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = { double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
-				double phiXlocal = 0.000075 double phiYlocal = 0.000075 double phiZlocal = 0.000075}
 		PSet TOBRods = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
 				double phiXlocal = 0.000040 double phiYlocal = 0.000040 double phiZlocal = 0.000040}
 		PSet TOBLayers = { // Not used since TOB layers do not make sense!
 			double dXlocal = 0.0000 double dYlocal = 0.0000 double dZlocal = 0.0000 }
 		PSet TOBHalfBarrels = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0300 
 				double phiXlocal = 0.000010 double phiYlocal = 0.000010 double phiZlocal = 0.000010}
+	        // DS Layers 1 & 2 have Dets and DetUnits - the latter ones not yet misaligned
+		PSet TOBLayer1_2 = {
+		        PSet Dets = {
+                                double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
+				double phiXlocal = 0.000075 double phiYlocal = 0.000075 double phiZlocal = 0.000075
+	                }
+	                // PSet DetUnits = {add here misalignment of components of Dets}
+	        }
+	        // SS Layers 3 - 6 have only DetUnits
+		PSet TOBLayer3_4_5_6 = {
+		        PSet DetUnits = {
+                                double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
+				double phiXlocal = 0.000075 double phiYlocal = 0.000075 double phiZlocal = 0.000075
+                        }
+	        }
 	}
 	
 	// TEC
@@ -898,12 +1237,27 @@ block TrackerSurveyLASCosmicsScenario =
 		double scale      = 1.0
 		double scaleError = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {   double dXlocal = 0.0022 double dYlocal = 0.0022 double dZlocal = 0.0022
-				double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050}
 		PSet TECPetals = {	double dXlocal = 0.0070 double dYlocal = 0.0070 double dZlocal = 0.0070 
 				double phiXlocal = 0.000030 double phiYlocal = 0.000030 double phiZlocal = 0.000030}
 		PSet TECDisks = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0150
 				double phiXlocal = 0.000015 double phiYlocal = 0.000015 double phiZlocal = 0.000015}
+	        // 1D and 2D Dets in TEC are a bit complicated:
+	        PSet TECDisk1_2_3 = { // all 7 rings present, DS Rings are 1, 2 & 5
+	                PSet TECRing1_2_5   = {using TECRingsSurveyLASCosmics_2D}
+	                PSet TECRing3_4_6_7 = {using TECRingsSurveyLASCosmics_1D}
+	        }
+	        PSet TECDisk4_5_6 = { // rings 2-7 present (here called 1-6), DS Rings are 1 & 4
+	                PSet TECRing1_4     = {using TECRingsSurveyLASCosmics_2D}
+	                PSet TECRing2_3_5_6 = {using TECRingsSurveyLASCosmics_1D}
+	        }
+	        PSet TECDisk7_8 = { // rings 3-7 present (here called 1-5), DS Ring is 3
+	                PSet TECRing3       = {using TECRingsSurveyLASCosmics_2D}
+	                PSet TECRing1_2_4_5 = {using TECRingsSurveyLASCosmics_1D}
+	        }
+	        PSet TECDisk9 = { // rings 4-7 present (here called 1-4), DS Ring is 2
+	                PSet TECRing2       = {using TECRingsSurveyLASCosmics_2D}
+	                PSet TECRing1_3_4   = {using TECRingsSurveyLASCosmics_1D}
+	       }
 	}
 
 
