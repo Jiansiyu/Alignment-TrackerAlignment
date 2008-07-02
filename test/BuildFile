@@ -10,7 +10,7 @@
 
 <library name=AlignmentTrackerAlignment_test file=*.cpp>
   <use name=Geometry/CommonDetUnit>
-  <use name=root>
+  <use name=rootgraphics>
   <use name=CondCore/DBOutputService>
   <use name=CondFormats/Alignment>
   <use name=CondFormats/AlignmentRecord>
