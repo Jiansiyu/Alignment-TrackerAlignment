@@ -1,0 +1,16 @@
+//
+// TrackerNoKnowledge misalignment scenario (see the corresponding CMS IN)
+// 
+// Include this file to produce a misaligned tracker geometry
+//
+// This replaces Geometry/TrackerGeometryBuilder/data/trackerGeometry.cfi
+//
+
+include "Alignment/TrackerAlignment/data/Scenarios.cff"
+
+es_module MisalignedTracker = MisalignedTrackerESProducer
+ {
+
+   using TrackerNoKnowledgeScenario
+
+ }

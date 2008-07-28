@@ -1263,3 +1263,143 @@ block TrackerSurveyLASCosmicsScenario =
 
 }
 
+// -----------------------------------------------------------------------
+// TrackerNoKnowledge scenario
+// ----------------------------------------
+// ----------------- NOTE -----------------
+// This scenario is not supposed to be used
+// to make public(?) estimates of the 
+// performance of the CMS.  
+//
+// This scenario contains lots of guesses,
+// and is intended to be used as a stress 
+// test for aligning with cosmics as well
+// as a initial misalignment for LAS studies
+// ------------- NOTE ends ----------------
+// ----------------------------------------
+block TrackerNoKnowledgeScenario =
+{
+	
+	using MisalignmentScenarioSettings
+	
+	// TPB
+	PSet TPBs = {
+		double scale      = 1.0
+		double scaleError = 1.0
+		PSet DetUnits = { string distribution = 'gaussian'
+			double dXlocal = 0.0060 double dYlocal = 0.0050 double dZlocal = 0.0030 
+			double phiXlocal = 0.0010 double phiYlocal = 0.0010 double phiZlocal = 0.0010 }
+		PSet TPBLadders = { string distribution = 'gaussian'
+			double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0050 
+			double phiXlocal = 0.0002 double phiYlocal = 0.0002 double phiZlocal = 0.0002 }
+		PSet TPBLayers = { string distribution = 'gaussian'
+			double dX = 0.0200 double dY = 0.0200 double dZ = 0.0200 
+			double phiXlocal = 0.0004 double phiYlocal = 0.0004 double phiZlocal = 0.0004 }
+		PSet TPBHalfBarrels = { string distribution = 'gaussian'
+			double dX = 0.0500 double dY = 0.0500 double dZ = 0.0500 
+			double phiXlocal = 0.0008 double phiYlocal = 0.0008 double phiZlocal = 0.0008 }
+		PSet TPBBarrels = { string distribution = 'gaussian'
+			double dX = 0.1000 double dY = 0.1000 double dZ = 0.1000 
+			double phiXlocal = 0.0030 double phiYlocal = 0.0030 double phiZlocal = 0.0030 }
+	}
+	
+	// TPE
+	// new hierarchy for TPE used
+	PSet TPEs = {
+		double scale      = 1.0
+		double scaleError = 1.0
+		string distribution = 'gaussian'
+
+		PSet DetUnits =   { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0030
+							double phiXlocal = 0.0010 double phiYlocal = 0.0010 double phiZlocal = 0.0010}
+		PSet TPEPanels =     { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0050
+							double phiXlocal = 0.0020 double phiYlocal = 0.0020 double phiZlocal = 0.0020}
+		PSet TPEBlades =       { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
+							double phiXlocal = 0.0010 double phiYlocal = 0.0010 double phiZlocal = 0.0010}
+		PSet TPEHalfDisks = { double dXlocal = 0.0200 double dYlocal = 0.0200 double dZlocal = 0.0200
+							double phiXlocal = 0.0010 double phiYlocal = 0.0010 double phiZlocal = 0.0010}
+		PSet TPEHalfCylinders = { double dXlocal = 0.0500 double dYlocal = 0.0500 double dZlocal = 0.0500
+							double phiXlocal = 0.0004 double phiYlocal = 0.0004 double phiZlocal = 0.0004}
+		PSet TPEEndcaps = { double dXlocal = 0.1000 double dYlocal = 0.1000 double dZlocal = 0.1000
+							double phiXlocal = 0.0017 double phiYlocal = 0.0017 double phiZlocal = 0.0017}
+	}
+	
+	// TIB
+	PSet TIBs = {
+		string distribution = 'gaussian'
+		double scale      = 1.0
+		double scaleError = 1.0
+		PSet Dets = { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
+			double phiXlocal = 0.0010 double phiYlocal = 0.0005 double phiZlocal = 0.0005}
+		PSet TIBStrings = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
+			double phiXlocal = 0.0004 double phiYlocal = 0.0002 double phiZlocal = 0.0002}
+		PSet TIBSurfaces = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
+			double phiXlocal = 0.0004 double phiYlocal = 0.0002 double phiZlocal = 0.0002}
+		PSet TIBHalfShells = { double dXlocal = 0.0300 double dYlocal = 0.0300 double dZlocal = 0.0150
+			double phiXlocal = 0.0004 double phiYlocal = 0.0004 double phiZlocal = 0.0004}
+		PSet TIBLayers = { double dXlocal = 0.0400 double dYlocal = 0.0400 double dZlocal = 0.0200
+			double phiXlocal = 0.0006 double phiYlocal = 0.0006 double phiZlocal = 0.0006}
+		PSet TIBHalfBarrels = { double dXlocal = 0.1000 double dYlocal = 0.1000 double dZlocal = 0.1000
+			double phiXlocal = 0.0008 double phiYlocal = 0.0008 double phiZlocal = 0.0008}
+		PSet TIBBarrels = { double dXlocal = 0.200 double dYlocal = 0.2000 double dZlocal = 0.2000
+			double phiXlocal = 0.0017 double phiYlocal = 0.0017 double phiZlocal = 0.0017}
+	}
+	
+	// TID
+	PSet TIDs = {
+		double scale      = 1.0
+		double scaleError = 1.0
+		string distribution = 'gaussian'
+		PSet Dets = { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
+				double phiXlocal = 0.0005 double phiYlocal = 0.0005 double phiZlocal = 0.0005}
+		PSet TIDSides = { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
+				double phiXlocal = 0.0001 double phiYlocal = 0.0001 double phiZlocal = 0.0001}
+		PSet TIDRings = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
+				double phiXlocal = 0.0001 double phiYlocal = 0.0001 double phiZlocal = 0.0001}
+		PSet TIDDisks = { double dXlocal = 0.0500 double dYlocal = 0.0500 double dZlocal = 0.0500
+				double phiXlocal = 0.0004 double phiYlocal = 0.0004 double phiZlocal = 0.0004}
+		PSet TIDEndcaps = {double dXlocal = 0.1000 double dYlocal = 0.1000 double dZlocal = 0.1000
+				double phiXlocal = 0.0013 double phiYlocal = 0.0013 double phiZlocal = 0.0013}
+	       
+	}
+	
+	// TOB
+	PSet TOBs = {
+		double scale      = 1.0
+		double scaleError = 1.0
+		string distribution = 'gaussian'
+		PSet Dets = { double dXlocal = 0.0030 double dYlocal = 0.0030 double dZlocal = 0.0100
+				double phiXlocal = 0.0002 double phiYlocal = 0.0002 double phiZlocal = 0.0002}
+		PSet TOBRods = { double dXlocal = 0.0100 double dYlocal = 0.0200 double dZlocal = 0.0100
+				double phiXlocal = 0.0001 double phiYlocal = 0.0002 double phiZlocal = 0.0001}
+		PSet TOBLayers = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0200
+				double phiXlocal = 0.0001 double phiYlocal = 0.0001 double phiZlocal = 0.0001}
+		PSet TOBHalfBarrels = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0200
+				double phiXlocal = 0.0001 double phiYlocal = 0.0001 double phiZlocal = 0.0001}
+		PSet TOBBarrels = { double dXlocal = 0.1000 double dYlocal = 0.1000 double dZlocal = 0.1000 
+				double phiXlocal = 0.0005 double phiYlocal = 0.0005 double phiZlocal = 0.0005}
+	}
+	
+	// TEC
+	PSet TECs = {
+		double scale      = 1.0
+		double scaleError = 1.0
+		string distribution = 'gaussian'
+		PSet Dets = {	double dXlocal = 0.0028 double dYlocal = 0.0028 double dZlocal = 0.0054 
+				double phiXlocal = 0.0005 double phiYlocal = 0.0005 double phiZlocal = 0.0003}
+#		PSet TECRings = {	double dXlocal = 0.0086 double dYlocal = 0.0086 double dZlocal = 0.0158 
+#				double phiXlocal = 0.0005 double phiYlocal = 0.0005 double phiZlocal = 0.0003}
+		PSet TECPetals = {	double dXlocal = 0.0086 double dYlocal = 0.0086 double dZlocal = 0.0158 
+				double phiXlocal = 0.0005 double phiYlocal = 0.0005 double phiZlocal = 0.0003}
+#		PSet TECSides = {	double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0200 
+#				double phiXlocal = 0.000050 double phiYlocal = 0.000050 double phiZlocal = 0.000050}
+		PSet TECDisks = {	double dXlocal = 0.0112 double dYlocal = 0.0206 double dZlocal = 0.0112 
+				double phiXlocal = 0.0002 double phiYlocal = 0.0001 double phiZlocal = 0.0001}
+		PSet TECEndcaps = {	double dXlocal = 0.0316 double dYlocal = 0.0500 double dZlocal = 0.0316 
+				double phiXlocal = 0.001 double phiYlocal = 0.001 double phiZlocal = 0.001}
+		
+	}
+
+
+}
+
