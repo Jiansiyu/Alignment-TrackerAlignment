@@ -1215,21 +1215,21 @@ block TrackerSurveyLASCosmicsScenario =
 			double dXlocal = 0.0000 double dYlocal = 0.0000 double dZlocal = 0.0000 }
 		PSet TOBHalfBarrels = { double dXlocal = 0.0060 double dYlocal = 0.0060 double dZlocal = 0.0300 
 				double phiXlocal = 0.000010 double phiYlocal = 0.000010 double phiZlocal = 0.000010}
-	        // DS Layers 1 & 2 have Dets and DetUnits - the latter ones not yet misaligned
+		// DS Layers 1 & 2 have Dets and DetUnits - the latter ones not yet misaligned
 		PSet TOBLayer1_2 = {
-		        PSet Dets = {
-                                double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
-				double phiXlocal = 0.000075 double phiYlocal = 0.000075 double phiZlocal = 0.000075
-	                }
-	                // PSet DetUnits = {add here misalignment of components of Dets}
-	        }
-	        // SS Layers 3 - 6 have only DetUnits
+			PSet Dets = {
+					double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
+					double phiXlocal = 0.000075 double phiYlocal = 0.000075 double phiZlocal = 0.000075
+			}
+			// PSet DetUnits = {add here misalignment of components of Dets}
+		}
+		// SS Layers 3 - 6 have only DetUnits
 		PSet TOBLayer3_4_5_6 = {
-		        PSet DetUnits = {
-                                double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
-				double phiXlocal = 0.000075 double phiYlocal = 0.000075 double phiZlocal = 0.000075
-                        }
-	        }
+			PSet DetUnits = {
+					double dXlocal = 0.0032 double dYlocal = 0.0032 double dZlocal = 0.0032
+					double phiXlocal = 0.000075 double phiYlocal = 0.000075 double phiZlocal = 0.000075
+			}
+		}
 	}
 	
 	// TEC
@@ -1277,6 +1277,22 @@ block TrackerSurveyLASCosmicsScenario =
 // as a initial misalignment for LAS studies
 // ------------- NOTE ends ----------------
 // ----------------------------------------
+// first helper blocks for TEC:
+block TECRingsTrackerNoKnowledge_1D = {
+    PSet DetUnits = {
+            double dXlocal = 0.0028 double dYlocal = 0.0028 double dZlocal = 0.0054 
+			double phiXlocal = 0.0005 double phiYlocal = 0.0005 double phiZlocal = 0.0003
+    }
+}
+
+block TECRingsTrackerNoKnowledge_2D = {
+    PSet Dets = {
+            double dXlocal = 0.0028 double dYlocal = 0.0028 double dZlocal = 0.0054 
+			double phiXlocal = 0.0005 double phiYlocal = 0.0005 double phiZlocal = 0.0003
+    }
+    // PSet DetUnits = { add here TEC misalignment of rphi/stereo components } misalignment at DetUnit level
+}
+// now real scenario
 block TrackerNoKnowledgeScenario =
 {
 	
@@ -1329,8 +1345,14 @@ block TrackerNoKnowledgeScenario =
 		string distribution = 'gaussian'
 		double scale      = 1.0
 		double scaleError = 1.0
-		PSet Dets = { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
-			double phiXlocal = 0.0010 double phiYlocal = 0.0005 double phiZlocal = 0.0005}
+		PSet TIBLayer1_2 = {
+			PSet Dets = { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
+				double phiXlocal = 0.0010 double phiYlocal = 0.0005 double phiZlocal = 0.0005}
+		}
+		PSet TIBLayer3_4 = {
+			PSet DetUnits = { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
+				double phiXlocal = 0.0010 double phiYlocal = 0.0005 double phiZlocal = 0.0005}
+		}
 		PSet TIBStrings = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
 			double phiXlocal = 0.0004 double phiYlocal = 0.0002 double phiZlocal = 0.0002}
 		PSet TIBSurfaces = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
@@ -1350,8 +1372,14 @@ block TrackerNoKnowledgeScenario =
 		double scale      = 1.0
 		double scaleError = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
+		PSet TIDRing1_2 = {
+			PSet Dets = { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
 				double phiXlocal = 0.0005 double phiYlocal = 0.0005 double phiZlocal = 0.0005}
+		}
+		PSet TIDRing3 = {
+			PSet DetUnits = { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
+				double phiXlocal = 0.0005 double phiYlocal = 0.0005 double phiZlocal = 0.0005}
+		}
 		PSet TIDSides = { double dXlocal = 0.0050 double dYlocal = 0.0050 double dZlocal = 0.0050
 				double phiXlocal = 0.0001 double phiYlocal = 0.0001 double phiZlocal = 0.0001}
 		PSet TIDRings = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0100
@@ -1368,8 +1396,14 @@ block TrackerNoKnowledgeScenario =
 		double scale      = 1.0
 		double scaleError = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = { double dXlocal = 0.0030 double dYlocal = 0.0030 double dZlocal = 0.0100
+		PSet TOBLayer1_2 = {
+			PSet Dets = { double dXlocal = 0.0030 double dYlocal = 0.0030 double dZlocal = 0.0100
 				double phiXlocal = 0.0002 double phiYlocal = 0.0002 double phiZlocal = 0.0002}
+		}
+		PSet TOBLayer3_4_5_6 = {
+			PSet DetUnits = { double dXlocal = 0.0030 double dYlocal = 0.0030 double dZlocal = 0.0100
+				double phiXlocal = 0.0002 double phiYlocal = 0.0002 double phiZlocal = 0.0002}
+		}
 		PSet TOBRods = { double dXlocal = 0.0100 double dYlocal = 0.0200 double dZlocal = 0.0100
 				double phiXlocal = 0.0001 double phiYlocal = 0.0002 double phiZlocal = 0.0001}
 		PSet TOBLayers = { double dXlocal = 0.0100 double dYlocal = 0.0100 double dZlocal = 0.0200
@@ -1385,8 +1419,23 @@ block TrackerNoKnowledgeScenario =
 		double scale      = 1.0
 		double scaleError = 1.0
 		string distribution = 'gaussian'
-		PSet Dets = {	double dXlocal = 0.0028 double dYlocal = 0.0028 double dZlocal = 0.0054 
-				double phiXlocal = 0.0005 double phiYlocal = 0.0005 double phiZlocal = 0.0003}
+		// 1D and 2D Dets in TEC are a bit complicated:
+		PSet TECDisk1_2_3 = { // all 7 rings present, DS Rings are 1, 2 & 5
+					PSet TECRing1_2_5   = {using TECRingsTrackerNoKnowledge_2D}
+					PSet TECRing3_4_6_7 = {using TECRingsTrackerNoKnowledge_1D}
+		}
+		PSet TECDisk4_5_6 = { // rings 2-7 present (here called 1-6), DS Rings are 1 & 4
+				PSet TECRing1_4     = {using TECRingsTrackerNoKnowledge_2D}
+				PSet TECRing2_3_5_6 = {using TECRingsTrackerNoKnowledge_1D}
+		}
+		PSet TECDisk7_8 = { // rings 3-7 present (here called 1-5), DS Ring is 3
+				PSet TECRing3       = {using TECRingsTrackerNoKnowledge_2D}
+				PSet TECRing1_2_4_5 = {using TECRingsTrackerNoKnowledge_1D}
+		}
+		PSet TECDisk9 = { // rings 4-7 present (here called 1-4), DS Ring is 2
+				PSet TECRing2       = {using TECRingsTrackerNoKnowledge_2D}
+				PSet TECRing1_3_4   = {using TECRingsTrackerNoKnowledge_1D}
+		}
 #		PSet TECRings = {	double dXlocal = 0.0086 double dYlocal = 0.0086 double dZlocal = 0.0158 
 #				double phiXlocal = 0.0005 double phiYlocal = 0.0005 double phiZlocal = 0.0003}
 		PSet TECPetals = {	double dXlocal = 0.0086 double dYlocal = 0.0086 double dZlocal = 0.0158 
